@@ -7,10 +7,10 @@
 ✨ Kaysa: Modular horizontal slider with touch controls, custom scrollbars, and responsive gap settings. Built with pure JavaScript for seamless integration.
 
 ## ✨ Features
-- 🔍 **Interactive Help** (`Kaysa.manual()`)
-- ⚡ **8KB Gzipped** (Zero dependencies)
 - 🎨 **Dual Configuration** (JS + HTML attributes)
 - 📱 **Mobile-friendly** touch support
+- ⚡ **8KB Gzipped** (Zero dependencies)
+- 🔍 **Interactive Help** (`Kaysa.manual()`)
 
 
 ## 📦 Installation & ⚙️Initialization
