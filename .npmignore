@@ -1,0 +1,27 @@
+# .npmignore
+
+# Kaynak Dosyalar (yayınlanmayacak)
+src/
+config/
+examples/
+test/
+
+# Geliştirme Ortamı
+dev/
+node_modules/
+
+# Build Araçları
+webpack.config.js
+babel.config.js
+*.log
+
+# IDE ve Editor
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Diğer
+.DS_Store
+Thumbs.db
+*.md # README.md HARİÇ (otomatik dahil edilir)

@@ -1,0 +1,62 @@
+// variable-local.scss
+@use '/var/www/html/actipro/sadrazam/source/stylesheet/variables-global';
+@forward '/var/www/html/actipro/sadrazam/source/stylesheet/variables-global';
+
+/** COLORS **/
+/** Theme Colors **/
+$color-theme-light: rgba(218, 215, 205, 1);
+$color-theme-base: rgba(88, 129, 87, 1);
+$color-theme-dark: rgba(52, 78, 65, 1);
+
+$color-theme-second-light: rgba(182, 173, 144, 1);
+$color-theme-second-base: rgba(147, 102, 57, 1);
+$color-theme-second-dark: rgba(88, 47, 14, 1);
+/** End of Theme Colors **/
+
+$color-image-background-color: rgba(35, 35, 37, 1);
+$color-zoom-lens: rgba(19, 28, 209, .4);
+
+// Theme Colors
+.kaysa {
+	--color-theme-light: #{$color-theme-light};
+	--color-theme-base: #{$color-theme-base};
+	--color-theme-dark: #{$color-theme-dark};
+
+	body.dark-mode {
+		--color-theme-light: #{$color-theme-dark};
+		--color-theme-base: #{$color-theme-base};
+		--color-theme-dark: #{$color-theme-light};
+	}
+
+	--color-theme-second-light: #{$color-theme-second-light};
+	--color-theme-second-base: #{$color-theme-second-base};
+	--color-theme-second-dark: #{$color-theme-second-dark};
+
+	body.dark-mode {
+		--color-theme-second-light: #{$color-theme-second-dark};
+		--color-theme-second-base: #{$color-theme-second-base};
+		--color-theme-second-dark: #{$color-theme-second-light};
+	}
+
+	--color-image-background-color: #{$color-image-background-color};
+	--color-zoom-lens: #{$color-zoom-lens};
+
+	--color-thumbnail-inactive: #{variables-global.$color-grey-400};
+	--color-thumbnail-hover: #{$color-theme-second-light};
+	--color-thumbnail-active: #{$color-theme-base};
+
+	--color-arrow-inactive: #{variables-global.$color-grey-400};
+	--color-arrow-active: #{variables-global.$color-grey-200};
+	
+	body.dark-mode {
+		--color-image-background-color: #{$color-image-background-color};
+		--color-zoom-lens: #{$color-zoom-lens};
+
+		--color-thumbnail-inactive: #{variables-global.$color-grey-400};
+		--color-thumbnail-hover: #{$color-theme-second-dark};
+		--color-thumbnail-active: #{$color-theme-base};
+
+		--color-arrow-inactive: #{variables-global.$opacity-backcloth-dark};
+		--color-arrow-active: #{variables-global.$opacity-backcloth-light};
+	}
+}

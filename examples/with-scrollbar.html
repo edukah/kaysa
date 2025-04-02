@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="tr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kaysa - Scrollbar Örneği</title>
+    <link rel="stylesheet" href="../dist/kaysa.min.css">
+    <link rel="stylesheet" href="assets/with-scrollbar.css">
+</head>
+
+<body>
+    <h1 style="text-align: center; margin: 1rem 0 2rem;">Scrollbar Örnek</h1>
+    <div class="kaysa-container-wrapper" id="custom-scroll-demo">
+        <!-- İçerik JS ile eklenecek -->
+    </div>
+    <script src="../dist/kaysa.min.js"></script>
+    <script src="assets/demo-data.js"></script>
+    <script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const container = document.getElementById('custom-scroll-demo');
+
+        // Demo içeriği oluştur
+        demoItems.forEach(item => {
+            container.innerHTML += `<div class="kaysa-item">${item}</div>`;
+        });
+
+        new Kaysa({
+            target: '#slider',
+            useCustomScrollbar: true, // DEFAULTS.useCustomScrollbar'ı ezer
+            scrollbarOptions: { color: 'red' } // DEFAULTS.scrollbarOptions'ı ezer
+        });
+    });
+    </script>
+</body>
+
+</html>

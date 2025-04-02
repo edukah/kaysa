@@ -1,0 +1,76 @@
+// kaysa.scss
+.kaysa {
+    &-container {
+        position: relative;
+        width: 100%;
+        margin: 1rem auto;
+        max-width: 800px;
+
+        /* Butonlar varsayılanda gizli */
+        /* Hover'da göster */
+
+        &> :not(.kaysa-items) {
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        /* Hover'da göster */
+        &.scrolling> :not(.kaysa-items),
+        &:hover> :not(.kaysa-items) {
+            opacity: 1;
+
+            &.kaysa-button:disabled {
+                opacity: .3;
+                cursor: not-allowed;
+
+            }
+        }
+    }
+
+    &-items {
+        display: flex;
+        overflow-x: auto;
+        gap: 15px;
+        padding: 10px 0;
+        scroll-behavior: smooth;
+
+        /* Tüm scrollbar'ları gizle */
+        scrollbar-width: none;
+        /* Firefox */
+        -ms-overflow-style: none;
+        /* IE/Edge */
+
+        &::-webkit-scrollbar {
+            display: none;
+            /* Chrome/Safari/Opera */
+        }
+    }
+
+    &-button {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        background: rgba(0, 0, 0, 0.5);
+        color: white;
+        border: none;
+        cursor: pointer;
+        z-index: 10;
+
+        &--left {
+            left: 15px;
+        }
+
+        &--right {
+            right: 15px;
+        }
+
+        &:hover:not(:disabled) {
+            background: rgba(0, 0, 0, 0.8);
+        }
+    }
+}
+
+/* KALDIRILAN: .kaysa-custom-scroll ile ilgili tüm stiller */
