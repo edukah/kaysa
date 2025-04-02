@@ -1,0 +1,38 @@
+@use '../base/variables';
+
+// kaysa_enhanced-scrollbar__thumb.scss
+.kaysa__items {
+  .is-scrolling>& {
+    scroll-behavior: auto !important;
+  }
+
+  /* Tüm scrollbar'ları gizle */
+  scrollbar-width: none;
+  /* Firefox */
+  -ms-overflow-style: none;
+
+  /* IE/Edge */
+  &::-webkit-scrollbar {
+    display: none;
+    /* Chrome/Safari/Opera */
+  }
+}
+
+.kaysa_enhanced-scrollbar__thumb-track {
+  height: 0.25rem;
+  border-radius: var(--radius-sm);
+  margin-top: 0.2rem;
+  display: none;
+
+  .kaysa_enhanced-scrollbar__thumb {
+    height: 100%;
+    background: var(--text-color-hint);
+    width: 0;
+    border-radius: var(--radius-sm);
+    cursor: grab;
+
+    &:active {
+      cursor: grabbing;
+    }
+  }
+}

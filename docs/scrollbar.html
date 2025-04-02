@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kaysa Slider - Enhanced Scrollbar</title>
+    <link rel="stylesheet" href="assets/style.css">
+    <script src="assets/script.js"></script>
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/@phosphor-icons/web@2.1.1/src/bold/style.css">
+    <!-- --- -->
+    <script src="assets/kaysa.min.js"></script>
+    <link rel="stylesheet" href="assets/kaysa.min.css">
+    <style type="text/css">
+        .custom-container-style {
+            max-width: 800px;
+            font-family: Arial, sans-serif;
+            margin: 0 auto;
+        }
+
+        .custom-item-style {
+            min-width: 250px;
+            height: 150px;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            border-radius: var(--radius-md);
+            box-shadow: 0 3px 5px rgba(0, 0, 0, 0.1);
+            flex-shrink: 0;
+        }
+
+        body.dark-mode .custom-item-style {
+            background: linear-gradient(135deg, #686869 0%, #1c1d21 100%);
+        }
+
+        /* Customize Scrollbar */
+        .kaysa_enhanced-scrollbar__thumb-track {
+            height: 6px;
+            background: rgba(200, 200, 200, 0.3);
+            border-radius: var(--radius-sm);
+            margin-top: 5px;
+        }
+
+        .kaysa_enhanced-scrollbar__thumb {
+            height: 100%;
+            background: #666;
+            border-radius: var(--radius-sm);
+            cursor: grab;
+            transition: background 0.2s;
+        }
+
+        .kaysa_enhanced-scrollbar__thumb:active {
+            cursor: grabbing;
+            background: #444;
+        }
+    </style>
+</head>
+
+<body>
+<script>if(sessionStorage.getItem("dark-mode"))document.body.classList.add("dark-mode")</script>
+    <header>
+        <!-- Navigation Header -->
+        <nav class="top-navbar">
+            <div class="nav-container">
+                <ul class="nav-links">
+                    <li><a href="index.html">Home</a></li>
+                    <li>
+                        <a href="javascript:void(0)" onclick="openPopup(); return false;">Examples</a>
+                        <div class="navi-popup-overlay" id="examplesPopupOverlay"></div>
+                        <div class="navi-popup" id="examplesPopup">
+                            <h3>Examples</h3>
+                            <ul>
+                                <li><a href="basic.html">Basic</a></li>
+                                <li><a href="scrollbar.html">with Scrollbar</a></li>
+                            </ul>
+                            <button class="close-popup" onclick="closePopup()">✕</button>
+                        </div>
+                    </li>
+                    <li><a href="https://github.com/edukah/kaysa" target="_blank">GitHub</a></li>
+                </ul>
+                <div class="dark-mode-button-container">
+                    <div class="mode-toggle-switch" onclick="toggleMode()"></div>
+                </div>
+            </div>
+        </nav>
+    </header>
+    <main>
+        <div class="content-container">
+            <div class="content-header">
+                <h1>Kaysa Slider</h1>
+                <p>Enhanced Scrollbar</p>
+            </div>
+            <div id="slider" class="custom-container-style">
+                <!-- JavaScript will add content -->
+            </div>
+        </div>
+    </main>
+    <footer>
+        <p>Kaysa Slider &copy; <span id="currentYear"></span> | MIT License</p>
+    </footer>
+    <script src="assets/demo-data.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const container = document.getElementById('slider');
+
+            // Generate Content
+            demoItems.forEach(item => {
+                container.innerHTML += `<div class="custom-item-style">${item}</div>`;
+            });
+
+            new Kaysa({
+                target: '#slider',
+                enhancedScrollbar: true,
+                prevButtonContent: "<i class='ph-bold ph-caret-left'></i>",
+                nextButtonContent: "<i class='ph-bold ph-caret-right'></i>",
+            });
+        });
+    </script>
+</body>
+
+</html>

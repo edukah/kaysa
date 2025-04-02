@@ -1,0 +1,144 @@
+@use 'variables';
+
+// kaysa.scss
+.kaysa {
+  &__container {
+    position: relative;
+    width: 100%;
+
+    // Initially hide the container itself — useful for JS-controlled visibility toggling
+    visibility: hidden;
+
+    // When the container becomes visible (e.g. via JS), override visibility
+    &.is-visible {
+      visibility: visible !important;
+    }
+
+    // Buttons and other children (except .kaysa__items) are hidden by default
+    &> :not(.kaysa__items) {
+      opacity: 0;
+
+      // Slow fade-out transition for when buttons disappear
+      transition: opacity 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+
+      // Hint to browser that this property will be animated, improving performance (especially Safari)
+      will-change: opacity;
+    }
+
+    // ===============================
+    // Hover-based visibility for desktop (precise pointer + hover capable devices)
+    // ===============================
+    @media (hover: hover) and (pointer: fine) {
+
+      // When the user hovers over the slider, show buttons quickly
+      &:hover> :not(.kaysa__items) {
+        opacity: 1;
+
+        // Faster fade-in for immediate visual feedback
+        transition: opacity 0.15s ease-in;
+
+        // Even when visible, keep disabled buttons visually subdued
+        &:disabled {
+          opacity: 0.5;
+        }
+      }
+
+      // Also make buttons visible when is-scrolling starts
+      &.is-scrolling> :not(.kaysa__items) {
+        opacity: 1;
+
+        // Same fast fade-in as hover
+        transition: opacity 0.15s ease-in;
+
+        // Disabled buttons remain at 50% opacity
+        &:disabled {
+          opacity: 0.5;
+        }
+      }
+    }
+
+    // ===============================
+    // Touch devices (coarse pointer + no hover support)
+    // ===============================
+    @media (hover: none) and (pointer: coarse) {
+
+      // On mobile/tablet: show buttons when is-scrolling,
+      // but avoid interfering with buttons themselves (e.g. autoplay pause/play)
+      &.is-scrolling> :not(.kaysa__items):not(.kaysa__button) {
+        opacity: 1;
+
+        // Use fast fade-in for mobile too
+        transition: opacity 0.15s ease-in;
+
+        // Maintain reduced visibility for disabled elements
+        &:disabled {
+          opacity: 0.5;
+        }
+      }
+    }
+  }
+
+  &__items {
+    display: flex;
+    overflow-x: auto;
+    gap: 1rem;
+    scroll-behavior: smooth;
+
+    /* Tüm scrollbar'ları gizle */
+    scrollbar-width: none;
+    /* Firefox */
+    -ms-overflow-style: none;
+    /* IE/Edge */
+
+    &::-webkit-scrollbar {
+      display: none;
+      /* Chrome/Safari/Opera */
+    }
+  }
+
+  &__button {
+    position: absolute;
+    top: 50%;
+    width: 2.8rem;
+    height: 2.8rem;
+
+    border: none;
+    border-radius: var(--radius-pill);
+    box-shadow: var(--shadow);
+
+    color: var(--button-text-color);
+    background: var(--button-background-color);
+
+    cursor: pointer;
+    z-index: 10;
+    transition:
+      opacity 0.3s ease,
+      visibility 0.3s ease;
+
+    transform: translateY(-50%);
+    display: flex;
+    align-items: center;
+
+    justify-content: center;
+
+    &:hover {
+      transform: translateY(-50%) scale(1.05);
+    }
+
+    &:disabled {
+      cursor: initial;
+
+      &:hover {
+        transform: translateY(-50%);
+      }
+    }
+
+    &--left {
+      left: 1rem;
+    }
+
+    &--right {
+      right: 1rem;
+    }
+  }
+}

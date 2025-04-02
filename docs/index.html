@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kaysa - Premium Slider</title>
+    <link rel="stylesheet" href="assets/style.css">
+    <script src="assets/script.js"></script>
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/@phosphor-icons/web@2.1.1/src/bold/style.css">
+    <!-- --- -->
+    <script src="assets/kaysa.min.js"></script>
+    <link rel="stylesheet" href="assets/kaysa.min.css">
+    <style>
+        h1 {
+            color: var(--theme-color-primary);
+            margin-bottom: 0.8rem;
+        }
+
+        .custom-container-style {
+            border-radius: var(--radius-lg);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+
+        .custom-item-style {
+            min-width: 300px;
+            height: 200px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            font-weight: bold;
+            color: white;
+            background: linear-gradient(135deg, var(--theme-color-primary), var(--theme-color-secondary));
+            border-radius: var(--radius-lg);
+            margin: 0 10px;
+            box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        body.dark-mode .custom-item-style {
+            box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.3);
+        }
+    </style>
+</head>
+
+<body>
+<script>if(sessionStorage.getItem("dark-mode"))document.body.classList.add("dark-mode")</script>
+    <header>
+        <!-- Navigation Header -->
+        <nav class="top-navbar">
+            <div class="nav-container">
+                <ul class="nav-links">
+                    <li><a href="index.html">Home</a></li>
+                    <li>
+                        <a href="javascript:void(0)" onclick="openPopup(); return false;">Examples</a>
+                        <div class="navi-popup-overlay" id="examplesPopupOverlay"></div>
+                        <div class="navi-popup" id="examplesPopup">
+                            <h3>Examples</h3>
+                            <ul>
+                                <li><a href="basic.html">Basic</a></li>
+                                <li><a href="scrollbar.html">with Scrollbar</a></li>
+                            </ul>
+                            <button class="close-popup" onclick="closePopup()">✕</button>
+                        </div>
+                    </li>
+                    <li><a href="https://github.com/edukah/kaysa" target="_blank">GitHub</a></li>
+                </ul>
+                <div class="dark-mode-button-container">
+                    <div class="mode-toggle-switch" onclick="toggleMode()"></div>
+                </div>
+            </div>
+        </nav>
+    </header>
+    <main>
+        <div class="content-container">
+            <div class="content-header">
+                <h1>Kaysa Slider</h1>
+                <p> A lightweight, smooth scrolling slider for modern web experiences </p>
+            </div>
+            <div class="custom-container-style">
+                <div class="custom-item-style">Slide 1</div>
+                <div class="custom-item-style">Slide 2</div>
+                <div class="custom-item-style">Slide 3</div>
+                <div class="custom-item-style">Slide 4</div>
+                <div class="custom-item-style">Slide 5</div>
+            </div>
+            <div class="feature-highlights">
+                <div class="feature-card">
+                    <div></div>
+                    <h3>Lightweight</h3>
+                    <p>Minimal footprint, zero dependencies</p>
+                </div>
+                <div class="feature-card">
+                    <div></div>
+                    <h3> Customizable</h3>
+                    <p>Change scroll speed, gaps, colors easily</p>
+                </div>
+                <div class="feature-card">
+                    <div></div>
+                    <h3> Responsive</h3>
+                    <p>Works flawlessly on all devices</p>
+                </div>
+            </div>
+        </div>
+    </main>
+    <footer>
+        <p>Kaysa Slider &copy; <span id="currentYear"></span> | MIT License</p>
+    </footer>
+    <script>
+        new Kaysa({
+            target: '.custom-container-style',
+            scrollSpeed: 0.6,
+            enhancedScrollbar: true,
+            prevButtonContent: "<i class='ph-bold ph-caret-left'></i>",
+            nextButtonContent: "<i class='ph-bold ph-caret-right'></i>",
+        });
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kaysa - Basic Usage</title>
+    <link rel="stylesheet" href="assets/style.css">
+    <script src="assets/script.js"></script>
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/@phosphor-icons/web@2.1.1/src/bold/style.css">
+    <!-- --- -->
+    <script src="assets/kaysa.min.js"></script>
+    <link rel="stylesheet" href="assets/kaysa.min.css">
+    <style>
+        .custom-container-style {
+            max-width: 800px;
+            margin: 2rem auto;
+            padding: 1rem;
+            border: 1px solid #eee;
+        }
+
+        body.dark-mode .custom-container-style {
+            border-color: rgba(55, 55, 56, 1);
+        }
+
+        .custom-item-style {
+            min-width: 200px;
+            height: 150px;
+            background: #f5f5f5;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            border-radius: var(--radius-md);
+        }
+
+        body.dark-mode .custom-item-style {
+            background: rgba(55, 55, 56, 1);
+        }
+    </style>
+</head>
+
+<body>
+<script>if(sessionStorage.getItem("dark-mode"))document.body.classList.add("dark-mode")</script>
+    <header>
+        <!-- Navigation Header -->
+        <nav class="top-navbar">
+            <div class="nav-container">
+                <ul class="nav-links">
+                    <li><a href="index.html">Home</a></li>
+                    <li>
+                        <a href="javascript:void(0)" onclick="openPopup(); return false;">Examples</a>
+                        <div class="navi-popup-overlay" id="examplesPopupOverlay"></div>
+                        <div class="navi-popup" id="examplesPopup">
+                            <h3>Examples</h3>
+                            <ul>
+                                <li><a href="basic.html">Basic</a></li>
+                                <li><a href="scrollbar.html">with Scrollbar</a></li>
+                            </ul>
+                            <button class="close-popup" onclick="closePopup()">✕</button>
+                        </div>
+                    </li>
+                    <li><a href="https://github.com/edukah/kaysa" target="_blank">GitHub</a></li>
+                </ul>
+                <div class="dark-mode-button-container">
+                    <div class="mode-toggle-switch" onclick="toggleMode()"></div>
+                </div>
+            </div>
+        </nav>
+    </header>
+    <main>
+        <div class="content-container">
+            <div class="content-header">
+                <h1>Kaysa Slider</h1>
+                <p>Kaysa - Basic Usage</p>
+            </div>
+            <div id="slider" class="custom-container-style" data-kaysa-prev-button-content="<i class='ph-bold ph-caret-left'></i>" data-kaysa-next-button-content="<i class='ph-bold ph-caret-right'></i>">
+                <div class="custom-item-style">1</div>
+                <div class="custom-item-style">2</div>
+                <div class="custom-item-style">3</div>
+                <div class="custom-item-style">4</div>
+                <div class="custom-item-style">5</div>
+            </div>
+        </div>
+    </main>
+    <footer>
+        <p>Kaysa Slider &copy; <span id="currentYear"></span> | MIT License</p>
+    </footer>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            new Kaysa({
+                target: '#slider',
+                scrollSpeed: 0.7
+            });
+        });
+    </script>
+</body>
+
+</html>

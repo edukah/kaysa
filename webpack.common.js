@@ -1,0 +1,59 @@
+import path from 'path';
+import { fileURLToPath } from 'url';
+import ESLintPlugin from 'eslint-webpack-plugin';
+import MiniCssExtractPlugin from 'mini-css-extract-plugin';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
+const context = path.resolve(__dirname);
+
+const eslintOptions = {
+  context,
+  extensions: ['js'],
+  exclude: ['/node_modules/'],
+  overrideConfigFile: path.join(context, 'eslint.config.js')
+};
+
+export default {
+  context,
+  devtool: false,
+  plugins: [
+    new ESLintPlugin(eslintOptions),
+    new MiniCssExtractPlugin({
+      filename: ({ chunk }) => `${chunk.name.replace(/\.junk$/, '.css')}`
+    })
+  ],
+  module: {
+    rules: [
+      {
+        test: /\.js$/,
+        exclude: /node_modules/,
+        use: {
+          loader: 'babel-loader',
+          options: {
+            presets: ['@babel/preset-env'],
+            configFile: path.join(context, 'babel.config.js')
+          }
+        }
+      },
+      {
+        test: /\.scss$/,
+        exclude: /node_modules/,
+        use: [
+          MiniCssExtractPlugin.loader,
+          'css-loader',
+          {
+            loader: 'sass-loader',
+            options: {
+              api: 'modern',
+              sassOptions: {
+                loadPaths: [path.resolve(context, '..')]
+              }
+            }
+          }
+        ]
+      }
+    ]
+  }
+};

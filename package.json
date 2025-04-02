@@ -1,0 +1,76 @@
+{
+  "name": "kaysa",
+  "version": "1.0.0",
+  "description": "Modular horizontal slider with touch controls, custom scrollbars, and responsive gap settings. Built with pure JavaScript for seamless integration.",
+  "type": "module",
+  "main": "dist/kaysa.min.js",
+  "module": "dist/kaysa.esm.js",
+  "types": "dist/kaysa.d.ts",
+  "files": [
+    "dist/",
+    "src/js/",
+    "src/scss/",
+    "CHANGELOG.md"
+  ],
+  "exports": {
+    ".": {
+      "sass": "./src/scss/main.scss",
+      "style": "./dist/kaysa.min.css",
+      "default": "./dist/kaysa.esm.js"
+    },
+    "./js/*": "./src/js/*",
+    "./scss/*": "./src/scss/*"
+  },
+  "style": "dist/kaysa.min.css",
+  "sass": "src/scss/main.scss",
+  "scripts": {
+    "dev": "webpack serve --config webpack.dev.js",
+    "build": "webpack --config webpack.prod.js",
+    "release": "npm run build && mkdir -p docs/assets && cp --remove-destination -r dist/. docs/assets"
+  },
+  "keywords": [
+    "kaysa",
+    "slider",
+    "carousel",
+    "lightweight",
+    "touch-slider",
+    "vanilla-js",
+    "ui-component",
+    "smooth-scrolling",
+    "horizontal-scroll",
+    "zero-dependencies",
+    "mobile-friendly"
+  ],
+  "author": "edukah",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/edukah/kaysa.git"
+  },
+  "bugs": {
+    "url": "https://github.com/edukah/kaysa/issues"
+  },
+  "homepage": "https://edukah.github.io/kaysa/",
+  "devDependencies": {
+    "@babel/cli": "^7.28.6",
+    "@babel/core": "^7.29.0",
+    "@babel/preset-env": "^7.29.0",
+    "@eslint/js": "^10.0.1",
+    "babel-loader": "^10.1.1",
+    "clean-webpack-plugin": "^4.0.0",
+    "css-loader": "^7.1.4",
+    "eslint": "^10.0.3",
+    "eslint-plugin-import-x": "^4.16.2",
+    "eslint-plugin-n": "^17.24.0",
+    "eslint-webpack-plugin": "^5.0.3",
+    "globals": "^17.4.0",
+    "mini-css-extract-plugin": "^2.10.1",
+    "sass": "^1.98.0",
+    "sass-loader": "^16.0.7",
+    "style-loader": "^4.0.0",
+    "webpack": "^5.105.4",
+    "webpack-cli": "^6.0.1",
+    "webpack-dev-server": "^5.2.3",
+    "webpack-merge": "^6.0.1"
+  }
+}
