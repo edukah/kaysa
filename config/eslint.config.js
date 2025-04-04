@@ -30,7 +30,7 @@ export default [
       'no-debugger': 'warn',
       'no-var': 'error',
       'prefer-const': 'error',
-      'no-new': 'warn',
+      'no-new': 'off',
       'import/no-absolute-path': 'error',
       'multiline-ternary': ['error', 'never'],
       'no-unused-vars': 'off'

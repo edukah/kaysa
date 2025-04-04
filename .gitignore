@@ -136,10 +136,7 @@ composer.phar
 # PHP Public
 public/include/composer
 
-# Personal
-# package-lock.json
-.gelistirme_notlari.md
-/examples/ai/
-
-
-
+# Customized
+/package-lock.json
+/.gelistirme_notlari.md
+/archive
