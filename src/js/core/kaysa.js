@@ -1,191 +1,228 @@
-import CustomScrollbar from '../modules/custom-scrollbar.js';
-
-const DEFAULTS = {
-    scrollSpeed: 0.8,
-    gap: '15px',
-    useCustomScrollbar: false,
-    scrollbarOptions: {
-        color: '#4CAF50',
-        width: '8px'
-    }
-};
+import EnhancedScrollbar from '../modules/enhanced-scrollbar.js';
+import manualData from './manual.json';
 
 class Kaysa {
-    config = new Map();
+  static DEFAULTS = {
+    scrollSpeed: 0.8, // Kaydırma hızı (varsayılan: 0.8)
+    gap: '15px', // Öğeler arasındaki boşluk (varsayılan: '15px')
+    enhancedScrollbar: false, // Özel kaydırma çubuğu kullanımı (varsayılan: false)
+    prevButtonContent: '<', // Sol buton için varsayılan içerik
+    nextButtonContent: '>', // Sağ buton için varsayılan içerik
+  };
 
-    /**
-     * Initialize Kaysa slider
-     * @param {Object} params - Configuration object
-     * @param {HTMLElement|string} params.target - Container element or selector
-     * @param {Object} [params.config={}] - Configuration options
-     */
-    constructor (params = {}) {
-        // Element seçimi
-        if (!params.target) throw new Error('Kaysa: "target" parameter is required');
+  config = new Map();
 
-        this.container = typeof params.target === 'string' ? document.querySelector(params.target) || document.getElementById(params.target.replace('#', '')) : params.target;
+  /**
+   * Initialize Kaysa slider
+   * @param {HTMLElement|Object} input - HTML element or configuration object
+   */
+  constructor (targetOrConfig = {}) {
+    // Eğer targetOrConfig bir HTMLElement ise, target olarak kabul et
+    if (targetOrConfig instanceof window.HTMLElement) {
+      this.container = targetOrConfig;
+      this.config.set('target', targetOrConfig);
+    }else if (typeof targetOrConfig === 'object') {
+      if (!targetOrConfig.target) throw new Error('Kaysa: "target" parameter is required');
+      
+      this.container = typeof targetOrConfig.target === 'string'? document.querySelector(targetOrConfig.target) || document.getElementById(targetOrConfig.target.replace('#', '')): targetOrConfig.target;
 
-        if (!this.container) throw new Error(`Kaysa: Element "${params.target}" not found`);
-
-        // Original config merge logic
-        const attributeConfig = this.getConfigFromAttributes();
-
-        [DEFAULTS, params, attributeConfig].forEach(source => {
-            Object.entries(source).forEach(([key, value]) => {
-                if (DEFAULTS[key] != null && value != null) {
-                    this.config.set(key, value);
-                }
-            });
-        });
-
-        // Original initialization flow
-        this.prepareStructure();
-        this.init();
+      if (!this.container) throw new Error(`Kaysa: Element "${targetOrConfig.target}" not found`);
+      
+      // Yapılandırmayı birleştir
+      this.mergeConfig(targetOrConfig);
+    } else {
+      throw new TypeError('Kaysa: Input must be an HTMLElement or a configuration object');
     }
 
-    /**
+    // Slider yapısını hazırla ve başlat
+    this.prepareStructure();
+    this.init();
+
+    // İçeriği görünür hale getir
+    this.showContent();
+  }
+
+  showContent () {
+    this.container.classList.add('visible');
+  }
+
+  /**
+   * Merge configuration with defaults
+   * @param {Object} customConfig - User-provided configuration
+   */
+  mergeConfig (customConfig) {
+    [Kaysa.DEFAULTS, customConfig, this.getConfigFromAttributes()].forEach(source => {
+      Object.entries(source).forEach(([key, value]) => {
+        if (Kaysa.DEFAULTS[key] != null && value != null) {
+          this.config.set(key, value);
+        }
+      });
+    });
+  }
+
+  /**
      * Get config from data attributes
      * @returns {Object} Configuration from data attributes
      */
-    getConfigFromAttributes () {
-        if (!this.container) return {};
+  getConfigFromAttributes () {
+    if (!this.container) return {};
 
-        return {
-            scrollSpeed: parseFloat(this.container.dataset.kaysaScrollSpeed) || undefined,
-            gap: this.container.dataset.kaysaGap || undefined,
-            useCustomScrollbar: Boolean(this.container.dataset.kaysaUseCustomScrollbar) || undefined
-        };
-    }
+    return {
+      scrollSpeed: parseFloat(this.container.dataset.kaysaScrollSpeed) || undefined,
+      gap: this.container.dataset.kaysaGap || undefined,
+      enhancedScrollbar: Boolean(this.container.dataset.kaysaUseEnhancedScrollbar) || undefined,
+      prevButtonContent: this.container.dataset.kaysaPrevButtonContent || undefined,
+      nextButtonContent: this.container.dataset.kaysaNextButtonContent || undefined,
+    };
+  }
 
-    /**
+  /**
      * Prepare DOM structure
      */
-    prepareStructure () {
-        this.itemsContainer = this.container.querySelector('.kaysa-items');
+  prepareStructure () {
+    this.itemsContainer = this.container.querySelector('.kaysa-items');
 
-        if (!this.itemsContainer) {
-            this.itemsContainer = document.createElement('div');
-            this.itemsContainer.className = 'kaysa-items';
-            this.itemsContainer.style.gap = this.config.get('gap');
+    if (!this.itemsContainer) {
+      this.itemsContainer = document.createElement('div');
+      this.itemsContainer.className = 'kaysa-items';
+      this.itemsContainer.style.gap = this.config.get('gap');
 
-            while (this.container.firstChild) {
-                this.itemsContainer.appendChild(this.container.firstChild);
-            }
+      while (this.container.firstChild) {
+        this.itemsContainer.appendChild(this.container.firstChild);
+      }
 
-            this.container.appendChild(this.itemsContainer);
-        }
-
-        this.container.classList.add('kaysa-container');
+      this.container.appendChild(this.itemsContainer);
     }
 
-    /**
+    this.container.classList.add('kaysa-container');
+  }
+
+  /**
      * Initialize slider components
      */
-    init () {
-        if (this.config.get('useCustomScrollbar')) {
-            this.initScrollbar();
-        }
-        this.setupButtons();
-        this.addEventListeners();
+  init () {
+    if (this.config.get('enhancedScrollbar')) {
+      this.initScrollbar();
     }
+    this.setupButtons();
+    this.addEventListeners();
+  }
 
-    /**
+  /**
      * Initialize custom scrollbar
      */
-    initScrollbar () {
-        try {
-            this.customScrollbar = new CustomScrollbar(this.container, this.config.get('scrollbarOptions'));
-        } catch (err) {
-            console.warn('Scrollbar initialization failed:', err);
-        }
+  initScrollbar () {
+    try {
+      this.enhancedScrollbar = new EnhancedScrollbar(this.container, this.config.get('scrollbarOptions'));
+    } catch (err) {
+      console.warn('Scrollbar initialization failed:', err);
     }
+  }
 
-    /**
+  /**
      * Create navigation buttons
      */
-    setupButtons () {
-        this.prevBtn = this.createButton('left');
-        this.nextBtn = this.createButton('right');
-        this.updateButtons();
-    }
+  setupButtons () {
+    this.prevBtn = this.createButton('left');
+    this.nextBtn = this.createButton('right');
 
-    /**
+    this.updateButtons();
+  }
+
+  /**
      * Create a navigation button
      * @param {string} direction - 'left' or 'right'
      * @returns {HTMLElement} Button element
      */
-    createButton (direction) {
-        const btn = document.createElement('button');
-        btn.className = `kaysa-button kaysa-button--${direction}`;
-        btn.innerHTML = direction === 'left' ? '&lt;' : '&gt;';
-        this.container.appendChild(btn);
-        return btn;
-    }
+  createButton (direction) {
+    const btn = document.createElement('button');
+    btn.className = `kaysa-button kaysa-button--${direction}`;
+    
+    // Buton içeriğini yapılandırmadan al
+    const content = this.config.get(`${direction === 'left' ? 'prevButtonContent' : 'nextButtonContent'}`);
+    btn.innerHTML = content || (direction === 'left' ? '<' : '>'); // Varsayılan değerler
 
-    /**
+    this.container.appendChild(btn);
+    
+    return btn;
+  }
+
+  /**
      * Add event listeners
      */
-    addEventListeners () {
-        this.prevBtn.addEventListener('click', () => this.scroll('left'));
-        this.nextBtn.addEventListener('click', () => this.scroll('right'));
+  addEventListeners () {
+    this.prevBtn.addEventListener('click', () => this.scroll('left'));
+    this.nextBtn.addEventListener('click', () => this.scroll('right'));
 
-        this.container.addEventListener('mouseover', this.handleMouseOver);
-        this.container.addEventListener('mouseleave', this.handleMouseLeave);
+    this.container.addEventListener('mouseover', this.handleMouseOver);
+    this.container.addEventListener('mouseleave', this.handleMouseLeave);
 
-        this.itemsContainer.addEventListener('scroll', () => this.updateButtons());
-    }
+    this.itemsContainer.addEventListener('scroll', () => this.updateButtons());
+  }
 
-    /**
+  /**
      * Scroll the slider
      * @param {string} direction - 'left' or 'right'
      */
-    scroll (direction) {
-        console.log('burda');
-        const amount = this.itemsContainer.clientWidth * this.config.get('scrollSpeed');
-        this.itemsContainer.scrollBy({
-            left: direction === 'right' ? amount : -amount,
-            behavior: 'smooth'
-        });
-    }
+  scroll (direction) {
+    const amount = this.itemsContainer.clientWidth * this.config.get('scrollSpeed');
+    this.itemsContainer.scrollBy({
+      left: direction === 'right' ? amount : -amount,
+      behavior: 'smooth'
+    });
+  }
 
-    /**
+  /**
      * Update button states based on scroll position
      */
-    updateButtons () {
-        const { scrollLeft, scrollWidth, clientWidth } = this.itemsContainer;
-        const maxScroll = scrollWidth - clientWidth;
-        this.prevBtn.disabled = scrollLeft <= 0;
-        this.nextBtn.disabled = scrollLeft >= maxScroll;
+  updateButtons () {
+    const { scrollLeft, scrollWidth, clientWidth } = this.itemsContainer;
+    const maxScroll = scrollWidth - clientWidth;
+    
+    // Butonların aktif/pasif durumunu güncelle
+    this.prevBtn.disabled = scrollLeft <= 0;
+    this.nextBtn.disabled = scrollLeft >= maxScroll;
+
+    // Buton stillerini güncelle
+    if (scrollLeft <= 0) {
+      this.prevBtn.style.opacity = '0.3';
+      this.prevBtn.style.cursor = 'initial';
+    } else {
+      this.prevBtn.style.opacity = '1';
+      this.prevBtn.style.cursor = 'pointer';
     }
 
-    handleMouseOver = () => {
-        console.log('hover');
-    };
-
-    handleMouseLeave = () => {
-        console.log('leave');
-    };
-
-    static manual () {
-        const lines = [
-            ['%c📚 Kaysa Manual (v1.0.0)%c\n', ['color: #6c5ce7; font-weight: bold; font-size: 1.2em;', '']],
-            ['%c🔧 Configuration Options:%c\n', ['color: #00b894; font-weight: bold;', '']],
-            ['  - %cscrollSpeed%c:        Number (0.1–1) \tDefault: 0.8      \t%cHTML: data-kaysa-scroll-speed%c\n', ['color: #fd79a8;', '', 'color: #636e72; font-size: 0.9em;', '']],
-            ['  - %cgap%c:                String (CSS)   \tDefault: \'15px\'  \t%cHTML: data-kaysa-gap%c\n', ['color: #fd79a8;', '', 'color: #636e72; font-size: 0.9em;', '']],
-            ['  - %cuseCustomScrollbar%c: Boolean        \tDefault: false    \t%cHTML: data-kaysa-use-custom-scrollbar%c\n\n', ['color: #fd79a8;', '', 'color: #636e72; font-size: 0.9em;', '']],
-            ['%c📌 Example Usage:%c\n', ['color: #0984e3; font-weight: bold;', '']],
-            ['  %c// JavaScript%c\n', ['color: #dfe6e9; background: #2d3436; padding: 2px 4px; border-radius: 3px;', '']],
-            ['  new Kaysa({ target: \'.slider\', scrollSpeed: 0.7, gap: \'15px\' });\n\n'],
-            ['  %c// HTML Attribute%c\n', ['color: #dfe6e9; background: #2d3436; padding: 2px 4px; border-radius: 3px;', '']],
-            ['  <div class="slider" data-kaysa-scroll-speed="0.7" data-kaysa-gap="15px">\n\n'],
-            ['%c🌐 GitHub:%c https://github.com/edukah/kaysa', ['color: #74b9ff; text-decoration: underline;', '']]
-        ];
-
-        const message = lines.map(([text]) => text).join('');
-        const styles = lines.flatMap(([_, styles = []]) => styles);
-
-        console.log(message, ...styles);
+    if (scrollLeft >= maxScroll) {
+      this.nextBtn.style.opacity = '0.3';
+      this.nextBtn.style.cursor = 'initial';
+    } else {
+      this.nextBtn.style.opacity = '1';
+      this.nextBtn.style.cursor = 'pointer';
     }
+  }
+
+  handleMouseOver = () => {
+    // console.log('hover');
+  };
+
+  handleMouseLeave = () => {
+    // console.log('leave');
+  };
+
+  /**
+   * Static method to display documentation in the console.
+   */
+  static manual () {
+    // Her satıra otomatik olarak '\n' ekleme
+    const lines = manualData.map(({ text, style }) => [`%c${text}\n`, style]);
+
+    // Metinleri ve stilleri ayır
+    const messages = lines.map(([text]) => text); // Metinler
+    const styles = lines.flatMap(([_, style]) => style || ''); // Stiller
+
+    // Console'a yazdır
+    console.log(messages.join(''), ...styles);
+  }
 }
 
 export default Kaysa;

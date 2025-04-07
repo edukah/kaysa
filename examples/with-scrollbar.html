@@ -4,33 +4,80 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kaysa - Scrollbar Örneği</title>
+    <title>Kaysa with Enchanced Scrollbar</title>
     <link rel="stylesheet" href="../dist/kaysa.min.css">
-    <link rel="stylesheet" href="assets/with-scrollbar.css">
+    <style type="text/css">
+        h1 {
+            text-align: center;
+            margin: 3rem 0 2rem;
+        }
+
+        .custom-container-style {
+            max-width: 800px;
+            margin: 2rem auto;
+            padding: 1rem;
+            font-family: Arial, sans-serif;
+        }
+
+        .custom-item-style {
+            min-width: 250px;
+            height: 150px;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            border-radius: 10px;
+            box-shadow: 0 3px 5px rgba(0,0,0,0.1);
+            flex-shrink: 0;
+        }
+
+        /* Customize Scrollbar */
+        .enhanced-scrollbar-track {
+            height: 6px;
+            background: rgba(200,200,200,0.3);
+            border-radius: 3px;
+            margin-top: 5px;
+        }
+
+        .enhanced-scrollbar {
+            height: 100%;
+            background: #666;
+            border-radius: 3px;
+            cursor: grab;
+            transition: background 0.2s;
+        }
+
+        .enhanced-scrollbar:active {
+            cursor: grabbing;
+            background: #444;
+        }
+    </style>
 </head>
 
 <body>
-    <h1 style="text-align: center; margin: 1rem 0 2rem;">Scrollbar Örnek</h1>
-    <div class="kaysa-container-wrapper" id="custom-scroll-demo">
-        <!-- İçerik JS ile eklenecek -->
+    <div>
+        <h1>Kaysa with Enchanced Scrollbar</h1>
+        <div id="slider" class="custom-container-style">
+            <!-- JavaScript will add content -->
+        </div>
     </div>
     <script src="../dist/kaysa.min.js"></script>
     <script src="assets/demo-data.js"></script>
     <script>
-    document.addEventListener('DOMContentLoaded', () => {
-        const container = document.getElementById('custom-scroll-demo');
+        document.addEventListener('DOMContentLoaded', () => {
+            const container = document.getElementById('slider');
 
-        // Demo içeriği oluştur
-        demoItems.forEach(item => {
-            container.innerHTML += `<div class="kaysa-item">${item}</div>`;
-        });
+        // Generate Content
+            demoItems.forEach(item => {
+                container.innerHTML += `<div class="custom-item-style">${item}</div>`;
+            });
 
-        new Kaysa({
-            target: '#slider',
-            useCustomScrollbar: true, // DEFAULTS.useCustomScrollbar'ı ezer
-            scrollbarOptions: { color: 'red' } // DEFAULTS.scrollbarOptions'ı ezer
+            new Kaysa({
+                target: '#slider',
+                enhancedScrollbar: true, 
+            });
         });
-    });
     </script>
 </body>
 

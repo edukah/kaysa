@@ -4,17 +4,22 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kaysa - Temel Kullanım</title>
+    <title>Kaysa - Basic Usage</title>
     <link rel="stylesheet" href="../dist/kaysa.min.css">
     <style>
-    .kaysa-container-wrapper {
+        h1 {
+          text-align: center;
+          margin: 3rem 0 2rem;  
+      }
+      
+      .custom-container-style {
         max-width: 800px;
         margin: 2rem auto;
         padding: 1rem;
         border: 1px solid #eee;
     }
 
-    .kaysa-item {
+    .custom-item-style {
         min-width: 200px;
         height: 150px;
         background: #f5f5f5;
@@ -24,26 +29,26 @@
         font-size: 2rem;
         border-radius: 8px;
     }
-    </style>
+</style>
 </head>
 
 <body>
-    <h1 style="text-align: center; margin-bottom: 1rem;">Kaysa Temel Kullanım</h1>
-    <div class="kaysa-container-wrapper">
-        <div class="kaysa-item">1</div>
-        <div class="kaysa-item">2</div>
-        <div class="kaysa-item">3</div>
-        <div class="kaysa-item">4</div>
-        <div class="kaysa-item">5</div>
+    <h1>Kaysa - Basic Usage</h1>
+    <div id="slider" class="custom-container-style">
+        <div class="custom-item-style">1</div>
+        <div class="custom-item-style">2</div>
+        <div class="custom-item-style">3</div>
+        <div class="custom-item-style">4</div>
+        <div class="custom-item-style">5</div>
     </div>
     <script src="../dist/kaysa.min.js"></script>
     <script>
-    document.addEventListener('DOMContentLoaded', () => {
-        new Kaysa({
-            target: '.slider',
+        document.addEventListener('DOMContentLoaded', () => {
+            new Kaysa({
+                target: '#slider',
             scrollSpeed: 0.7 // Artık DEFAULTS.scrollSpeed'i override ediyor
         });
-    });
+        });
     </script>
 </body>
 

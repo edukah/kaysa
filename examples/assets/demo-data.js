@@ -1,15 +1,15 @@
 // Demo veri seti
 const demoItems = [
-  '🍏 Elma',
-  '🍊 Portakal',
-  '🍌 Muz',
-  '🍓 Çilek',
-  '🍍 Ananas',
+  '🍏 Apple',
+  '🍊 Orange',
+  '🍌 Banana',
+  '🍓 Strawberry',
+  '🍍 Pineapple',
   '🥭 Mango',
-  '🍑 Şeftali',
-  '🍉 Karpuz',
-  '🥝 Kivi',
-  '🍇 Üzüm'
+  '🍑 Peach',
+  '🍉 Watermelon',
+  '🥝 Kiwi',
+  '🍇 Grapes'
 ];
 
 // ES6 modül desteği

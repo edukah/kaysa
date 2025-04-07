@@ -9,11 +9,12 @@
 ## ✨ Features
 - 🎨 **Dual Configuration** (JS + HTML attributes)
 - 📱 **Mobile-friendly** touch support
-- ⚡ **8KB Gzipped** (Zero dependencies)
+- ⚡ **Minimal footprint, zero dependencies**
 - 🔍 **Interactive Help** (`Kaysa.manual()`)
 
+---
 
-## 📦 Installation & ⚙️Initialization
+## 📦 Installation & ⚙️ Initialization
 
 > **Note:** The `target` parameter is required and must be a valid DOM element or selector. All other options are optional.
 
@@ -38,50 +39,75 @@ Minyatur also allows configuring behavior using `data-*` attributes directly in 
 <div class="slider"
      data-kaysa-scroll-speed="0.7"
      data-kaysa-gap="20px"
-     data-kaysa-use-custom-scrollbar="true">
+     data-kaysa-use-enhanced-scrollbar="true">
   <div>Item 1</div>
   <div>Item 2</div>
   <div>Item 3</div>
 </div>
 ```
 
+---
+
 ## 🚀 Basic Usage
-### JavaScript Configuration 
+
+### JavaScript Configuration
+
 ```javascript
 new Kaysa({
   target: '.slider',        // Required - selector or element
-  scrollSpeed: 0.7,         // 0.1 (slow) - 1 (fast)
-  gap: '20px',              // CSS valid spacing
-  useCustomScrollbar: true  
+  scrollSpeed: 0.7,
+  gap: '20px',
+  enhancedScrollbar: true,
+  prevButtonContent: '←',
+  nextButtonContent: '→'
 });
 ```
-### HTML Attribute Configuration 
+
+### HTML Attribute Configuration
+
 ```html
 <div class="slider"
      data-kaysa-scroll-speed="0.7"
      data-kaysa-gap="20px"
-     data-kaysa-use-custom-scrollbar="true">
+     data-kaysa-use-enhanced-scrollbar="true"
+     data-kaysa-prev-button-content="←"
+     data-kaysa-next-button-content="→">
   <!-- slider items here -->
 </div>
 ```
 
+---
+
 ## ⚙️ Configuration Options
-| Option | Type | Default | HTML Attribute |
-|--------|------|---------|-----------------|
-| `scrollSpeed` | `number` | `0.8` | `data-kaysa-scroll-speed` |
-| `gap` | `string` | `'15px'` | `data-kaysa-gap` |
-| `useCustomScrollbar` | `boolean` | `false` | `data-kaysa-use-custom-scrollbar` |
+
+| Option               | Type      | Default   | Description                                                                                   | HTML Attribute                   |
+|----------------------|-----------|-----------|-----------------------------------------------------------------------------------------------|----------------------------------|
+| `scrollSpeed`        | `number`  | `0.8`     | Determines the scrolling speed (value between 0.1–1).                                         | `data-kaysa-scroll-speed`        |
+| `gap`                | `string`  | `'15px'`  | Sets the gap between items (CSS value).                                                       | `data-kaysa-gap`                 |
+| `enhancedScrollbar` | `boolean` | `false`   | Enables/disables the custom scrollbar.                                                        | `data-kaysa-use-enhanced-scrollbar`|
+| `prevButtonContent`  | `string`  | `'<'`     | Content of the previous button.                                                               | `data-kaysa-prev-button-content` |
+| `nextButtonContent`  | `string`  | `'>'`     | Content of the next button.                                                                   | `data-kaysa-next-button-content` |
+
+---
 
 ## 🌟 Interactive Help
-Run in console:
+
+Run the following command in the browser console to view interactive documentation:
+
 ```javascript
 Kaysa.manual(); // Shows both syntax options
 ```
 
+---
+
 ## 🌐 GitHub Links
+
 - 🐞 [Report Issues](https://github.com/edukah/kaysa/issues)
 - 🌟 [Star Project](https://github.com/edukah/kaysa)
 - 🤝 [Contribute](https://github.com/edukah/kaysa/pulls)
 
+---
+
 ## 📜 License
+
 MIT © 2024 [edukah](https://github.com/edukah)

@@ -1,6 +1,7 @@
 // webpack.dev.js (cleaned up ESM version)
 
 import path from 'path';
+import fs from 'fs';
 import { fileURLToPath } from 'url';
 import { merge } from 'webpack-merge';
 import common from './webpack.common.js';
@@ -13,6 +14,8 @@ const entry = {
   'kaysa.dev.junk': path.join(common.context, 'src/scss/main.scss')
 };
 
+const certPath = '/etc/ssl/localcerts';
+
 export default merge(common, {
   mode: 'development',
   entry,
@@ -21,30 +24,40 @@ export default merge(common, {
     path: path.join(common.context, 'dev'),
     chunkFormat: false,
     library: {
-      name: 'Kaysa',
+      name: 'kaysa',
       type: 'umd',
       export: 'default'
     },
     globalObject: 'this'
   },
   devServer: {
+    headers: {
+      'Access-Control-Allow-Origin': '*',
+      'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, PATCH, OPTIONS',
+      'Access-Control-Allow-Headers': 'X-Requested-With, content-type, Authorization',
+    },    
+    server: {
+      type: 'https',
+      options: {
+        key: fs.readFileSync(path.join(certPath, 'kaysa-key.pem')),
+        cert: fs.readFileSync(path.join(certPath, 'kaysa.pem'))
+      }
+    },
+    // host: '0.0.0.0' ifadesi, bir sunucunun tüm ağ arayüzlerini dinlemesi gerektiğini belirtir. Yani, bu ayarla sunucu yalnızca localhost (127.0.0.1) üzerinden değil, aynı zamanda makinenizin tüm IP adresleri üzerinden de erişilebilir hale gelir.
+    host: '0.0.0.0',
+    allowedHosts: ['kaysa', 'localhost', '127.0.0.1'],
+    port: 9005,
+    // webSocketServer: 'sockjs',
     devMiddleware: {
       publicPath: '/instant-compiled-folder'
     },
-    watchFiles: [path.join(common.context, 'src')],
-    headers: {
-      'Access-Control-Allow-Origin': '*'
-    },
-    hot: true,
-    compress: true,
     open: {
-      target: ['https://localhost:9008'],
+      target: ['https://kaysa:9005'],
       app: { name: 'google-chrome' }
     },
-    host: '0.0.0.0',
-    port: 9008,
-    server: 'https',
-    webSocketServer: 'sockjs',
+    watchFiles: [path.join(common.context, 'src')],
+    hot: true,
+    compress: true,
     static: [
       { directory: path.join(common.context, 'dev') },
       { directory: path.join(common.context, 'examples') }

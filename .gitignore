@@ -137,6 +137,8 @@ composer.phar
 public/include/composer
 
 # Customized
-/package-lock.json
-/.gelistirme_notlari.md
+# Documentation files (exclude all except README.md)
+!README.md
+*.md
+.htaccess
 /archive

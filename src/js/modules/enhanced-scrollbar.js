@@ -1,4 +1,4 @@
-class CustomScrollbar {
+class EnhancedScrollbar {
   config = new Map();
   
   constructor (containerElement, config = {}) {
@@ -11,9 +11,9 @@ class CustomScrollbar {
 
   initScrollbar () {
     this.track = document.createElement('div');
-    this.track.className = 'custom-scrollbar-track';
+    this.track.className = 'enhanced-scrollbar-track';
     this.scrollbar = document.createElement('div');
-    this.scrollbar.className = 'custom-scrollbar';
+    this.scrollbar.className = 'enhanced-scrollbar';
     this.track.appendChild(this.scrollbar);
     this.kaysaItems.parentNode.appendChild(this.track);
     this.updateScrollbar();
@@ -95,8 +95,8 @@ class CustomScrollbar {
 
   static initAll (selector = '.kaysa-container') {
     return Array.from(document.querySelectorAll(selector))
-    .map(el => new CustomScrollbar(el));
+      .map(el => new EnhancedScrollbar(el));
   }
 }
 
-export default CustomScrollbar;
+export default EnhancedScrollbar;

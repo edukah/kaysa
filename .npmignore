@@ -23,6 +23,9 @@ babel.config.js
 .DS_Store
 Thumbs.db
 
+# Customized
 # Documentation files (exclude all except README.md)
 !README.md
 *.md
+.htaccess
+/archive

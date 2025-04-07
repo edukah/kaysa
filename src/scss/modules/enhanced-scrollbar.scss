@@ -1,29 +1,31 @@
-// custom-scrollbar.scss
+// enhanced-scrollbar.scss
 .kaysa-items {
-  display: flex;
-  overflow-x: auto;
   scrollbar-width: none;
-  padding-bottom: 15px;
-  gap: 10px;
-  scroll-behavior: smooth;
 
   .scrolling > & {
     scroll-behavior: auto !important;
   }
 
-  &::-webkit-scrollbar { 
-    display: none; 
+  /* Tüm scrollbar'ları gizle */
+  scrollbar-width: none;
+  /* Firefox */
+  -ms-overflow-style: none;
+  /* IE/Edge */
+
+  &::-webkit-scrollbar {
+    display: none;
+    /* Chrome/Safari/Opera */
   }
 }
 
-.custom-scrollbar-track {
+.enhanced-scrollbar-track {
   height: 6px;
   background: rgba(200,200,200,0.3);
   border-radius: 3px;
   margin-top: 5px;
   display: none;
 
-  .custom-scrollbar {
+  .enhanced-scrollbar {
     height: 100%;
     background: #666;
     width: 0;
