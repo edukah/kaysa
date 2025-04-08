@@ -19,9 +19,10 @@ class Kaysa {
   constructor (targetOrConfig = {}) {
     // Eğer targetOrConfig bir HTMLElement ise, target olarak kabul et
     if (targetOrConfig instanceof window.HTMLElement) {
+
       this.container = targetOrConfig;
       this.config.set('target', targetOrConfig);
-    }else if (typeof targetOrConfig === 'object') {
+    } else if (typeof targetOrConfig === 'object') {
       if (!targetOrConfig.target) throw new Error('Kaysa: "target" parameter is required');
       
       this.container = typeof targetOrConfig.target === 'string'? document.querySelector(targetOrConfig.target) || document.getElementById(targetOrConfig.target.replace('#', '')): targetOrConfig.target;
@@ -104,7 +105,7 @@ class Kaysa {
     if (this.config.get('enhancedScrollbar')) {
       this.initScrollbar();
     }
-    this.setupButtons();
+    this.initButtons();
     this.addEventListeners();
   }
 
@@ -122,7 +123,7 @@ class Kaysa {
   /**
      * Create navigation buttons
      */
-  setupButtons () {
+  initButtons () {
     this.prevBtn = this.createButton('left');
     this.nextBtn = this.createButton('right');
 
@@ -184,7 +185,7 @@ class Kaysa {
     this.nextBtn.disabled = scrollLeft >= maxScroll;
 
     // Buton stillerini güncelle
-    if (scrollLeft <= 0) {
+    /* if (scrollLeft <= 0) {
       this.prevBtn.style.opacity = '0.3';
       this.prevBtn.style.cursor = 'initial';
     } else {
@@ -198,7 +199,7 @@ class Kaysa {
     } else {
       this.nextBtn.style.opacity = '1';
       this.nextBtn.style.cursor = 'pointer';
-    }
+    } */
   }
 
   handleMouseOver = () => {

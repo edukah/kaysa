@@ -4,8 +4,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kaysa with Enchanced Scrollbar</title>
+    <title>Kaysa Slider - Enchanced Scrollbar</title>
     <link rel="stylesheet" href="../dist/kaysa.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style type="text/css">
         h1 {
             text-align: center;
@@ -28,14 +29,14 @@
             justify-content: center;
             font-size: 1.5rem;
             border-radius: 10px;
-            box-shadow: 0 3px 5px rgba(0,0,0,0.1);
+            box-shadow: 0 3px 5px rgba(0, 0, 0, 0.1);
             flex-shrink: 0;
         }
 
         /* Customize Scrollbar */
         .enhanced-scrollbar-track {
             height: 6px;
-            background: rgba(200,200,200,0.3);
+            background: rgba(200, 200, 200, 0.3);
             border-radius: 3px;
             margin-top: 5px;
         }
@@ -57,7 +58,7 @@
 
 <body>
     <div>
-        <h1>Kaysa with Enchanced Scrollbar</h1>
+        <h1>Kaysa Slider - Enchanced Scrollbar</h1>
         <div id="slider" class="custom-container-style">
             <!-- JavaScript will add content -->
         </div>
@@ -68,14 +69,14 @@
         document.addEventListener('DOMContentLoaded', () => {
             const container = document.getElementById('slider');
 
-        // Generate Content
+            // Generate Content
             demoItems.forEach(item => {
                 container.innerHTML += `<div class="custom-item-style">${item}</div>`;
             });
 
             new Kaysa({
                 target: '#slider',
-                enhancedScrollbar: true, 
+                enhancedScrollbar: true,
             });
         });
     </script>

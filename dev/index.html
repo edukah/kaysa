@@ -3,10 +3,13 @@
 
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Kaysa Demo</title>
     <link rel="stylesheet" href="instant-compiled-folder/kaysa.dev.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        html, body {
+        html,
+        body {
             width: 100%;
             min-height: 100%;
 
@@ -42,7 +45,7 @@
 <body>
     <div class="develpoment-container">
         <h1>Kaysa Developer</h1>
-        <div id="custom-kaysa-contianer">
+        <div id="custom-kaysa-contianer" data-kaysa-prev-button-content="<i class='fas fa-chevron-left'></i>" data-kaysa-next-button-content="<i class='fas fa-chevron-right'></i>">
             <div class="custom-item-style">1</div>
             <div class="custom-item-style">2</div>
             <div class="custom-item-style">3</div>
@@ -51,17 +54,17 @@
             <div class="custom-item-style">6</div>
         </div>
     </div>
-</div>
-<script src="instant-compiled-folder/kaysa.dev.js"></script>
-<script>
-    document.addEventListener('DOMContentLoaded', () => {
-        new Kaysa({
-            target: '#custom-kaysa-contianer',
-            scrollSpeed: 0.7,
-            enhancedScrollbar: true
+    </div>
+    <script src="instant-compiled-folder/kaysa.dev.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            new Kaysa({
+                target: '#custom-kaysa-contianer',
+                scrollSpeed: 0.7,
+                enhancedScrollbar: true
+            });
         });
-    });
-</script>
+    </script>
 </body>
 
 </html>
