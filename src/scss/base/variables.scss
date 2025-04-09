@@ -1,0 +1,49 @@
+/* colors */
+$color-primary: #2563eb;
+$color-secondary: #1e40af;
+
+$text-color-primary-light-theme: rgba(235, 231, 222, 1);
+$text-color-hint-light-theme: rgba(165, 158, 165, 1);
+
+$text-color-primary-dark-theme: rgba(23, 23, 23, 1);
+$text-color-hint-dark-theme: rgba(132, 132, 132, 1);
+
+$color-grey-200: rgba(235, 235, 235, 1);
+$color-grey-400: rgba(204, 204, 204, 1);
+
+$button-background-color-light-theme: rgba(255, 255, 255, 1);
+$button-diabled-background-color-light-theme: rgba(255, 255, 255, 0.5);
+
+$button-background-color-dark-theme: rgba(35, 35, 37, 1);
+$button-diabled-background-color-dark-theme: rgba(35, 35, 37, 0.5);
+
+/* sass to css */
+:root {
+  --color-primary: #{$text-color-primary-light-theme};
+  --color-secondary: #{$text-color-hint-light-theme};
+
+  /* text */
+  --text-color-primary: #{$text-color-primary-light-theme};
+  --text-color-hint: #{$text-color-hint-light-theme};
+
+  body.dark-mode {
+    --text-color-primary: #{$text-color-primary-dark-theme};
+    --text-color-hint: #{$text-color-hint-dark-theme};
+  }
+
+  /* button */
+  --button-text-color: #{$text-color-primary-dark-theme};
+  --button-background-color: #{$button-background-color-light-theme};
+  --button-disabled-background-color: #{$button-diabled-background-color-light-theme};
+
+  body.dark-mode {
+    --button-text-color: #{$text-color-primary-light-theme};
+    --button-background-color: #{$button-background-color-dark-theme};
+    --button-disabled-background-color: #{$button-diabled-background-color-dark-theme};
+  }
+
+  /* Other */
+  --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  --shadow-hover: 0 10px 20px rgba(0, 0, 0, 0.15);
+  --transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}

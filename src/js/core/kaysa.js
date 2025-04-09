@@ -3,11 +3,11 @@ import manualData from './manual.json';
 
 class Kaysa {
   static DEFAULTS = {
-    scrollSpeed: 0.8, // Kaydırma hızı (varsayılan: 0.8)
-    gap: '15px', // Öğeler arasındaki boşluk (varsayılan: '15px')
-    enhancedScrollbar: false, // Özel kaydırma çubuğu kullanımı (varsayılan: false)
-    prevButtonContent: '<', // Sol buton için varsayılan içerik
-    nextButtonContent: '>', // Sağ buton için varsayılan içerik
+    scrollSpeed: 0.8, // Scroll speed (default: 0.8)
+    gap: '15px', // Gap between items (default: '15px')
+    enhancedScrollbar: false, // Use custom scrollbar (default: false)
+    prevButtonContent: '<', // Default content for the left button
+    nextButtonContent: '>', // Default content for the right button
   };
 
   config = new Map();
@@ -17,7 +17,7 @@ class Kaysa {
    * @param {HTMLElement|Object} input - HTML element or configuration object
    */
   constructor (targetOrConfig = {}) {
-    // Eğer targetOrConfig bir HTMLElement ise, target olarak kabul et
+    // If targetOrConfig is an HTMLElement, accept it as the target
     if (targetOrConfig instanceof window.HTMLElement) {
 
       this.container = targetOrConfig;
@@ -29,17 +29,17 @@ class Kaysa {
 
       if (!this.container) throw new Error(`Kaysa: Element "${targetOrConfig.target}" not found`);
       
-      // Yapılandırmayı birleştir
+      // Merge configuration
       this.mergeConfig(targetOrConfig);
     } else {
       throw new TypeError('Kaysa: Input must be an HTMLElement or a configuration object');
     }
 
-    // Slider yapısını hazırla ve başlat
+    // Prepare and initialize slider structure
     this.prepareStructure();
     this.init();
 
-    // İçeriği görünür hale getir
+    // Make content visible
     this.showContent();
   }
 
@@ -62,7 +62,7 @@ class Kaysa {
   }
 
   /**
-     * Get config from data attributes
+     * Get configuration from data attributes
      * @returns {Object} Configuration from data attributes
      */
   getConfigFromAttributes () {
@@ -139,9 +139,9 @@ class Kaysa {
     const btn = document.createElement('button');
     btn.className = `kaysa-button kaysa-button--${direction}`;
     
-    // Buton içeriğini yapılandırmadan al
+    // Get button content from configuration
     const content = this.config.get(`${direction === 'left' ? 'prevButtonContent' : 'nextButtonContent'}`);
-    btn.innerHTML = content || (direction === 'left' ? '<' : '>'); // Varsayılan değerler
+    btn.innerHTML = content || (direction === 'left' ? '<' : '>'); // Default values
 
     this.container.appendChild(btn);
     
@@ -180,11 +180,11 @@ class Kaysa {
     const { scrollLeft, scrollWidth, clientWidth } = this.itemsContainer;
     const maxScroll = scrollWidth - clientWidth;
     
-    // Butonların aktif/pasif durumunu güncelle
+    // Update state of buttons
     this.prevBtn.disabled = scrollLeft <= 0;
     this.nextBtn.disabled = scrollLeft >= maxScroll;
 
-    // Buton stillerini güncelle
+    // Update style properties
     /* if (scrollLeft <= 0) {
       this.prevBtn.style.opacity = '0.3';
       this.prevBtn.style.cursor = 'initial';
@@ -214,14 +214,14 @@ class Kaysa {
    * Static method to display documentation in the console.
    */
   static manual () {
-    // Her satıra otomatik olarak '\n' ekleme
+    // Automatically add '\n' to each line
     const lines = manualData.map(({ text, style }) => [`%c${text}\n`, style]);
 
-    // Metinleri ve stilleri ayır
-    const messages = lines.map(([text]) => text); // Metinler
-    const styles = lines.flatMap(([_, style]) => style || ''); // Stiller
+    // Separate texts and styles
+    const messages = lines.map(([text]) => text); // Texts
+    const styles = lines.flatMap(([_, style]) => style || ''); // Styles
 
-    // Console'a yazdır
+    // Print to console
     console.log(messages.join(''), ...styles);
   }
 }

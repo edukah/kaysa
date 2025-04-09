@@ -8,10 +8,11 @@
   "sass": "src/scss/main.scss",
   "scripts": {
     "dev": "webpack serve --config config/webpack.dev.js",
-    "prod": "webpack --config config/webpack.prod.js",
-    "build": "npm run clean && webpack --config config/webpack.prod.js",
+    "prod": "npm run clean && webpack --config config/webpack.prod.js && mkdir -p examples/assets && cp --remove-destination -r dist/. examples/assets",
+    "build": "webpack --config config/webpack.prod.js",
     "watch": "webpack --config config/webpack.dev.js --watch",
-    "clean": "rimraf dist"
+    "clean": "rimraf dist/*",
+    "release": "npm run prod && gh-pages -d examples"
   },
   "keywords": [
     "kaysa",
