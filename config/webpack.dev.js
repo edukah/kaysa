@@ -60,7 +60,7 @@ export default merge(common, {
     compress: true,
     static: [
       { directory: path.join(common.context, 'dev') },
-      { directory: path.join(common.context, 'examples') }
+      { directory: path.join(common.context, 'docs') }
     ],
     client: {
       overlay: {

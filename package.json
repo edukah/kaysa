@@ -8,11 +8,8 @@
   "sass": "src/scss/main.scss",
   "scripts": {
     "dev": "webpack serve --config config/webpack.dev.js",
-    "prod": "npm run clean && webpack --config config/webpack.prod.js && mkdir -p examples/assets && cp --remove-destination -r dist/. examples/assets",
     "build": "webpack --config config/webpack.prod.js",
-    "watch": "webpack --config config/webpack.dev.js --watch",
-    "clean": "rimraf dist/*",
-    "release": "npm run prod && gh-pages -d examples"
+    "release": "npm run build && mkdir -p docs/assets && cp --remove-destination -r dist/. docs/assets"
   },
   "keywords": [
     "kaysa",
@@ -36,7 +33,7 @@
   "bugs": {
     "url": "https://github.com/edukah/kaysa/issues"
   },
-  "homepage": "https://github.com/edukah/kaysa#readme",
+  "homepage": "https://edukah.github.io/kaysa/",
   "devDependencies": {
     "@babel/cli": "^7.27.0",
     "@babel/core": "^7.26.10",
