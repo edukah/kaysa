@@ -10,11 +10,20 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 const entry = {
-  'kaysa.dev.js': path.join(common.context, 'src/js/index.js'),
-  'kaysa.dev.junk': path.join(common.context, 'src/scss/main.scss')
+  'build.dev.js': path.join(common.context, 'src/js/index.js'),
+  'build.dev.junk': path.join(common.context, 'src/scss/main.scss')
 };
 
-const certPath = '/etc/ssl/localcerts';
+// mkcert files
+const certPath = '/etc/ssl/localcerts/localhost.pem';
+const keyPath = '/etc/ssl/localcerts/localhost-key.pem';
+let devServerOptions = {};
+if(fs.existsSync(certPath) && fs.existsSync(keyPath)){
+  devServerOptions = {
+    cert: fs.readFileSync(certPath),
+    key: fs.readFileSync(keyPath)
+  };
+}
 
 export default merge(common, {
   mode: 'development',
@@ -22,7 +31,6 @@ export default merge(common, {
   output: {
     filename: '[name]',
     path: path.join(common.context, 'dev'),
-    chunkFormat: false,
     library: {
       name: 'kaysa',
       type: 'umd',
@@ -38,21 +46,16 @@ export default merge(common, {
     },    
     server: {
       type: 'https',
-      options: {
-        key: fs.readFileSync(path.join(certPath, 'kaysa-key.pem')),
-        cert: fs.readFileSync(path.join(certPath, 'kaysa.pem'))
-      }
+      options: devServerOptions
     },
-    // host: '0.0.0.0' ifadesi, bir sunucunun tüm ağ arayüzlerini dinlemesi gerektiğini belirtir. Yani, bu ayarla sunucu yalnızca localhost (127.0.0.1) üzerinden değil, aynı zamanda makinenizin tüm IP adresleri üzerinden de erişilebilir hale gelir.
     host: '0.0.0.0',
-    allowedHosts: ['kaysa', 'localhost', '127.0.0.1'],
+    allowedHosts: ['localhost', '127.0.0.1'],
     port: 9005,
-    // webSocketServer: 'sockjs',
     devMiddleware: {
-      publicPath: '/instant-compiled-folder'
+      publicPath: '/_hot/'
     },
     open: {
-      target: ['https://kaysa:9005'],
+      target: ['https://localhost:9005'],
       app: { name: 'google-chrome' }
     },
     watchFiles: [path.join(common.context, 'src')],
