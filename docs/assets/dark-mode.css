@@ -23,6 +23,7 @@ body.dark-mode {
 .dark-mode-button-container {
   margin-left: auto;
   padding-left: 2rem;
+  text-align: right;
 }
 
 .mode-toggle-switch {
