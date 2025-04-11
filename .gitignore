@@ -133,12 +133,12 @@ out
 composer.phar
 /vendor/
 
-# PHP Public
-public/include/composer
-
 # Customized
+# PHP Public
+public/include/composer/
+
 # Documentation files (exclude all except README.md)
 !README.md
 *.md
 .htaccess
-/archive
+/archive/
