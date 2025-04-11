@@ -50,11 +50,12 @@ Minyatur also allows configuring behavior using `data-*` attributes directly in 
 ### Dark Mode Integration
 
 Add `.dark-mode` class to `<body>` to activate dark theme:
-  
+
 ```html
 <body class="dark-mode">
   <div class="slider">...</div>
 </body>
+```
 
 ---
 
