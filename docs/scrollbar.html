@@ -5,8 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Kaysa Slider - Enchanced Scrollbar</title>
-    <link rel="stylesheet" href="assets/common.css">
-    <link rel="stylesheet" href="assets/dark-mode.css">
+    <link rel="stylesheet" href="assets/style.css">
     <script src="assets/script.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <!-- --- -->
@@ -60,40 +59,44 @@
 </head>
 
 <body>
-    <!-- Navigation Header -->
-    <nav class="top-navbar">
-        <div class="nav-container">
-            <ul class="nav-links">
-                <li><a href="index.html" class="active">Home</a></li>
-                <li>
-                    <a href="javascript:void(0)" onclick="openPopup(); return false;">Examples</a>
-                    <!-- Navbar içinde (nav-links'ten sonra) bu div'i ekleyin -->
-                    <div class="examples-popup-overlay" id="examplesPopupOverlay"></div>
-                    <div class="examples-popup" id="examplesPopup">
-                        <h3>Examples</h3>
-                        <ul>
-                            <li><a href="basic.html">Basic</a></li>
-                            <li><a href="scrollbar.html">with Scrollbar</a></li>
-                        </ul>
-                        <button class="close-popup" onclick="closePopup()">✕</button>
-                    </div>
-                </li>
-                <li><a href="https://github.com/edukah/kaysa" target="_blank">GitHub</a></li>
-            </ul>
-            <div class="dark-mode-button-container">
-                <div class="mode-toggle-switch" onclick="toggleMode()"></div>
+    <header>
+        <!-- Navigation Header -->
+        <nav class="top-navbar">
+            <div class="nav-container">
+                <ul class="nav-links">
+                    <li><a href="index.html">Home</a></li>
+                    <li>
+                        <a href="javascript:void(0)" onclick="openPopup(); return false;">Examples</a>
+                        <!-- Navbar içinde (nav-links'ten sonra) bu div'i ekleyin -->
+                        <div class="navi-popup-overlay" id="examplesPopupOverlay"></div>
+                        <div class="navi-popup" id="examplesPopup">
+                            <h3>Examples</h3>
+                            <ul>
+                                <li><a href="basic.html">Basic</a></li>
+                                <li><a href="scrollbar.html">with Scrollbar</a></li>
+                            </ul>
+                            <button class="close-popup" onclick="closePopup()">✕</button>
+                        </div>
+                    </li>
+                    <li><a href="https://github.com/edukah/kaysa" target="_blank">GitHub</a></li>
+                </ul>
+                <div class="dark-mode-button-container">
+                    <div class="mode-toggle-switch" onclick="toggleMode()"></div>
+                </div>
+            </div>
+        </nav>
+    </header>
+    <main>
+        <div class="content-container">
+            <div class="content-header">
+                <h1>Kaysa Slider</h1>
+                <p>Enchanced Scrollbar</p>
+            </div>
+            <div id="slider" class="custom-container-style">
+                <!-- JavaScript will add content -->
             </div>
         </div>
-    </nav>
-    <div class="common-container">
-        <div class="common-header">
-            <h1>Kaysa Slider</h1>
-            <h3>Enchanced Scrollbar</h3>
-        </div>
-        <div id="slider" class="custom-container-style">
-            <!-- JavaScript will add content -->
-        </div>
-    </div>
+    </main>
     <footer>
         <p>Kaysa Slider &copy; <span id="currentYear"></span> | MIT License</p>
     </footer>
