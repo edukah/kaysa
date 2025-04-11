@@ -141,4 +141,4 @@ public/include/composer/
 !README.md
 *.md
 .htaccess
-/archive
+archive
