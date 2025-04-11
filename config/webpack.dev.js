@@ -15,8 +15,8 @@ const entry = {
 };
 
 // mkcert files
-const certPath = '/etc/ssl/localcerts/localhost.pem';
-const keyPath = '/etc/ssl/localcerts/localhost-key.pem';
+const certPath = '/etc/ssl/localcerts/kaysa.test.pem';
+const keyPath = '/etc/ssl/localcerts/kaysa.test-key.pem';
 let devServerOptions = {};
 if(fs.existsSync(certPath) && fs.existsSync(keyPath)){
   devServerOptions = {
@@ -49,13 +49,13 @@ export default merge(common, {
       options: devServerOptions
     },
     host: '0.0.0.0',
-    allowedHosts: ['localhost', '127.0.0.1'],
+    allowedHosts: ['kaysa.test', 'localhost', '127.0.0.1'],
     port: 9005,
     devMiddleware: {
       publicPath: '/_hot/'
     },
     open: {
-      target: ['https://localhost:9005'],
+      target: ['https://kaysa.test:9005'],
       app: { name: 'google-chrome' }
     },
     watchFiles: [path.join(common.context, 'src')],

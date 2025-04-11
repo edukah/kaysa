@@ -1,50 +1,61 @@
+body.dark-mode {
+  --nav-bg: #121212;
+  --nav-text: #ffffff;
+  --nav-hover: var(--kaysa-secondary);
+  --github-bg: #0d1117;
+  --card-bg: #232325;
+  --text-color: #f0f0f0;
+  --shadow-color: rgba(255, 255, 255, 0.05);
+}
+
 * {
   transition:
     background-color 0.3s ease,
     color 0.3s ease;
 }
-/* Dark mode specific styles */
+
+/* Styles for dark mode */
 body.dark-mode {
   background-color: #121212;
-  color: #ffffff;
 }
 
-/* Toggle Switch Styles */
+/* Dark Mode Toggle */
+.dark-mode-button-container {
+  margin-left: auto;
+  padding-left: 2rem;
+}
+
 .mode-toggle-switch {
   position: relative;
   display: inline-block;
   width: 60px;
   height: 30px;
-  background-color: rgba(204, 204, 204, 1);
+  background-color: #ccc;
   border-radius: 15px;
-  transition: background-color 0.3s ease;
   cursor: pointer;
   overflow: hidden;
 }
 
 .mode-toggle-switch.active {
-  background-color: rgba(46, 46, 49, 1); /* Green when active (Dark Mode) */
+  background-color: #2e2e31;
 }
 
-/* Icons on the background */
 .mode-toggle-switch::before {
-  content: "🌙"; /* Sun icon for Light Mode */
+  content: "🌙";
   position: absolute;
   right: 10%;
   top: 50%;
   transform: translateY(-50%);
   font-size: 0.9rem;
   z-index: 1;
-  transition: opacity 0.3s ease;
 }
 
 .mode-toggle-switch.active::before {
-  content: "☀️"; /* Moon icon for Dark Mode */
+  content: "☀️";
   right: unset;
   left: 10%;
 }
 
-/* Circle slider */
 .mode-toggle-switch::after {
   content: "";
   position: absolute;
@@ -59,6 +70,6 @@ body.dark-mode {
 }
 
 .mode-toggle-switch.active::after {
-  background-color: rgba(125, 125, 125, 1);
-  transform: translateX(30px); /* Move the circle to the right */
+  background-color: #7d7d7d;
+  transform: translateX(30px);
 }

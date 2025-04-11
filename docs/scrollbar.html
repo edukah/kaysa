@@ -7,7 +7,7 @@
     <title>Kaysa Slider - Enchanced Scrollbar</title>
     <link rel="stylesheet" href="assets/common.css">
     <link rel="stylesheet" href="assets/dark-mode.css">
-    <script src="assets/dark-mode.js"></script>
+    <script src="assets/script.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <!-- --- -->
     <script src="assets/kaysa.min.js"></script>
@@ -16,6 +16,7 @@
         .custom-container-style {
             max-width: 800px;
             font-family: Arial, sans-serif;
+            margin: 0 auto;
         }
 
         .custom-item-style {
@@ -59,10 +60,32 @@
 </head>
 
 <body>
-    <div class="common-container">
-        <div class="dark-mode-button-container">
-            <div class="mode-toggle-switch" onclick="toggleMode()"></div>
+    <!-- Navigation Header -->
+    <nav class="top-navbar">
+        <div class="nav-container">
+            <ul class="nav-links">
+                <li><a href="index.html" class="active">Home</a></li>
+                <li>
+                    <a href="javascript:void(0)" onclick="openPopup(); return false;">Examples</a>
+                    <!-- Navbar içinde (nav-links'ten sonra) bu div'i ekleyin -->
+                    <div class="examples-popup-overlay" id="examplesPopupOverlay"></div>
+                    <div class="examples-popup" id="examplesPopup">
+                        <h3>Examples</h3>
+                        <ul>
+                            <li><a href="basic.html">Basic</a></li>
+                            <li><a href="scrollbar.html">with Scrollbar</a></li>
+                        </ul>
+                        <button class="close-popup" onclick="closePopup()">✕</button>
+                    </div>
+                </li>
+                <li><a href="https://github.com/edukah/kaysa" target="_blank">GitHub</a></li>
+            </ul>
+            <div class="dark-mode-button-container">
+                <div class="mode-toggle-switch" onclick="toggleMode()"></div>
+            </div>
         </div>
+    </nav>
+    <div class="common-container">
         <div class="common-header">
             <h1>Kaysa Slider</h1>
             <h3>Enchanced Scrollbar</h3>
@@ -71,6 +94,9 @@
             <!-- JavaScript will add content -->
         </div>
     </div>
+    <footer>
+        <p>Kaysa Slider &copy; <span id="currentYear"></span> | MIT License</p>
+    </footer>
     <script src="assets/demo-data.js"></script>
     <script>
         document.addEventListener('DOMContentLoaded', () => {
