@@ -26,5 +26,7 @@ function closePopup () {
 }
 
 window.addEventListener('DOMContentLoaded', () => {
-  document.getElementById('currentYear').textContent = new Date().getFullYear();
+  if(document.getElementById('currentYear')) {
+    document.getElementById('currentYear').textContent = new Date().getFullYear();
+  }
 });

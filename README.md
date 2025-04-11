@@ -8,6 +8,7 @@
 
 ## ✨ Features
 - 🎨 **Dual Configuration** (JS + HTML attributes)
+- 🌓 **Dark/Light Mode Support** (via CSS class)
 - 📱 **Mobile-friendly** touch support
 - ⚡ **Minimal footprint, zero dependencies**
 - 🔍 **Interactive Help** (`Kaysa.manual()`)
@@ -45,6 +46,15 @@ Minyatur also allows configuring behavior using `data-*` attributes directly in 
   <div>Item 3</div>
 </div>
 ```
+
+### Dark Mode Integration
+
+Add `.dark-mode` class to `<body>` to activate dark theme:
+  
+```html
+<body class="dark-mode">
+  <div class="slider">...</div>
+</body>
 
 ---
 
