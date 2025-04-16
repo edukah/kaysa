@@ -1,3 +1,5 @@
+@import "normalize.css";
+
 :root {
   --theme-color-primary: #6c5ce7;
   --theme-color-secondary: #a29bfe;
@@ -55,7 +57,7 @@ main {
 }
 
 h1 {
-  font-size: 35px;
+  font-size: 2rem;
   text-align: center;
   margin-bottom: 10px;
 }
@@ -68,7 +70,7 @@ h2 {
 }
 
 h3 {
-  font-size: 16px;
+  font-size: 1rem;
   color: var(--theme-color-primary);
   text-align: center;
   margin: 0;

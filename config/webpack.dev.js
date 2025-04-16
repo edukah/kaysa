@@ -14,14 +14,30 @@ const entry = {
   'build.dev.junk': path.join(common.context, 'src/scss/main.scss')
 };
 
-// mkcert files
-const certPath = '/etc/ssl/localcerts/kaysa.test.pem';
-const keyPath = '/etc/ssl/localcerts/kaysa.test-key.pem';
-let devServerOptions = {};
-if(fs.existsSync(certPath) && fs.existsSync(keyPath)){
-  devServerOptions = {
-    cert: fs.readFileSync(certPath),
-    key: fs.readFileSync(keyPath)
+const scriptName = 'kaysa';
+
+// webpack dev server host configration
+const devServerConfig = {
+  type: 'http',
+  host: 'localhost',
+  port: 9007,
+  get target () {
+    return `${this.type}://${this.host}:${this.port}`;
+  },
+  sslPath: {
+    cert: `/etc/ssl/localcerts/${scriptName}.dev.pem`,
+    key: `/etc/ssl/localcerts/${scriptName}.dev-key.pem`
+  },
+  options: {}
+};
+
+if(fs.existsSync(devServerConfig.sslPath.cert) && fs.existsSync(devServerConfig.sslPath.key)){
+  devServerConfig.type = 'https';
+  devServerConfig.host = `${scriptName}.dev`;
+
+  devServerConfig.options = {
+    cert: fs.readFileSync(devServerConfig.sslPath.cert),
+    key: fs.readFileSync(devServerConfig.sslPath.key)
   };
 }
 
@@ -32,7 +48,7 @@ export default merge(common, {
     filename: '[name]',
     path: path.join(common.context, 'dev'),
     library: {
-      name: 'kaysa',
+      name: scriptName,
       type: 'umd',
       export: 'default'
     },
@@ -45,17 +61,17 @@ export default merge(common, {
       'Access-Control-Allow-Headers': 'X-Requested-With, content-type, Authorization',
     },    
     server: {
-      type: 'https',
-      options: devServerOptions
+      type: devServerConfig.type,
+      options: devServerConfig.options
     },
     host: '0.0.0.0',
-    allowedHosts: ['kaysa.test', 'localhost', '127.0.0.1'],
-    port: 9005,
+    allowedHosts: [devServerConfig.host, 'localhost', '127.0.0.1'],
+    port: devServerConfig.port,
     devMiddleware: {
       publicPath: '/_hot/'
     },
     open: {
-      target: ['https://kaysa.test:9005'],
+      target: [devServerConfig.target],
       app: { name: 'google-chrome' }
     },
     watchFiles: [path.join(common.context, 'src')],

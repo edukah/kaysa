@@ -33,7 +33,7 @@
   &-items {
     display: flex;
     overflow-x: auto;
-    gap: 15px;
+    gap: 1rem;
     scroll-behavior: smooth;
 
     /* Tüm scrollbar'ları gizle */
@@ -51,8 +51,8 @@
   &-button {
     position: absolute;
     top: 50%;
-    width: 43px;
-    height: 43px;
+    width: 2.8rem;
+    height: 2.8rem;
 
     border: none;
     border-radius: 50%;
@@ -86,11 +86,11 @@
     }
 
     &--left {
-      left: 15px;
+      left: 1rem;
     }
 
     &--right {
-      right: 15px;
+      right: 1rem;
     }
   }
 }

@@ -52,29 +52,24 @@ class Kaysa {
    * @param {Object} customConfig - User-provided configuration
    */
   mergeConfig (customConfig) {
-    [Kaysa.DEFAULTS, customConfig, this.getConfigFromAttributes()].forEach(source => {
+  // data-attributes → config keys
+    const configFromAttributes = {};
+
+    Object.entries(this.container.dataset).forEach(([key, value]) => {
+      const rawKey = key.replace('kaysa', '');
+      const keyToConfig = rawKey.charAt(0).toLowerCase() + rawKey.slice(1);
+      configFromAttributes[keyToConfig] = value;
+    });
+
+    console.log([Kaysa.DEFAULTS, customConfig, configFromAttributes]);
+
+    [Kaysa.DEFAULTS, customConfig, configFromAttributes].forEach(source => {
       Object.entries(source).forEach(([key, value]) => {
-        if (Kaysa.DEFAULTS[key] != null && value != null) {
-          this.config.set(key, value);
-        }
+        this.config.set(key, value);
       });
     });
-  }
 
-  /**
-     * Get configuration from data attributes
-     * @returns {Object} Configuration from data attributes
-     */
-  getConfigFromAttributes () {
-    if (!this.container) return {};
-
-    return {
-      scrollSpeed: parseFloat(this.container.dataset.kaysaScrollSpeed) || undefined,
-      gap: this.container.dataset.kaysaGap || undefined,
-      enhancedScrollbar: Boolean(this.container.dataset.kaysaUseEnhancedScrollbar) || undefined,
-      prevButtonContent: this.container.dataset.kaysaPrevButtonContent || undefined,
-      nextButtonContent: this.container.dataset.kaysaNextButtonContent || undefined,
-    };
+    console.log(this.config);
   }
 
   /**
