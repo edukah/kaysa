@@ -6,9 +6,6 @@ import { fileURLToPath } from 'url';
 import { merge } from 'webpack-merge';
 import common from './webpack.common.js';
 
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
-
 const entry = {
   'build.dev.js': path.join(common.context, 'src/js/index.js'),
   'build.dev.junk': path.join(common.context, 'src/scss/main.scss')
@@ -20,7 +17,7 @@ const scriptName = 'kaysa';
 const devServerConfig = {
   type: 'http',
   host: 'localhost',
-  port: 9007,
+  port: 9006,
   get target () {
     return `${this.type}://${this.host}:${this.port}`;
   },
@@ -74,7 +71,6 @@ export default merge(common, {
       target: [devServerConfig.target],
       app: { name: 'google-chrome' }
     },
-    watchFiles: [path.join(common.context, 'src')],
     hot: true,
     compress: true,
     static: [

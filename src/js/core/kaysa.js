@@ -61,8 +61,6 @@ class Kaysa {
       configFromAttributes[keyToConfig] = value;
     });
 
-    console.log([Kaysa.DEFAULTS, customConfig, configFromAttributes]);
-
     [Kaysa.DEFAULTS, customConfig, configFromAttributes].forEach(source => {
       Object.entries(source).forEach(([key, value]) => {
         this.config.set(key, value);
@@ -210,7 +208,9 @@ class Kaysa {
    */
   static manual () {
     // Automatically add '\n' to each line
-    const lines = manualData.map(({ text, style }) => [`%c${text}\n`, style]);
+    const lines = manualData.map(({ text, style = "" }) => [`%c${text}\n`, style]);
+
+    console.log(lines);
 
     // Separate texts and styles
     const messages = lines.map(([text]) => text); // Texts

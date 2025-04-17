@@ -6,26 +6,74 @@
     position: relative;
     width: 100%;
 
+    // Initially hide the container itself — useful for JS-controlled visibility toggling
     visibility: hidden;
 
+    // When the container becomes visible (e.g. via JS), override visibility
     &.visible {
       visibility: visible !important;
     }
 
-    /* buttons hidden normal state */
-    & > :not(.kaysa-items) {
-      transition: opacity 0.3s ease;
+    // Buttons and other children (except .kaysa-items) are hidden by default
+    &> :not(.kaysa-items) {
       opacity: 0;
+
+      // Slow fade-out transition for when buttons disappear
+      transition: opacity 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+
+      // Hint to browser that this property will be animated, improving performance (especially Safari)
+      will-change: opacity;
     }
 
-    /* if slider scrolling or hover show buttons  */
-    &.scrolling > :not(.kaysa-items),
-    &:hover > :not(.kaysa-items) {
-      opacity: 1;
+    // ===============================
+    // Hover-based visibility for desktop (precise pointer + hover capable devices)
+    // ===============================
+    @media (hover: hover) and (pointer: fine) {
 
-      /* disabled buttons opacity */
-      &:disabled {
-        opacity: 0.5;
+      // When the user hovers over the slider, show buttons quickly
+      &:hover> :not(.kaysa-items) {
+        opacity: 1;
+
+        // Faster fade-in for immediate visual feedback
+        transition: opacity 0.15s ease-in;
+
+        // Even when visible, keep disabled buttons visually subdued
+        &:disabled {
+          opacity: 0.5;
+        }
+      }
+
+      // Also make buttons visible when scrolling starts
+      &.scrolling> :not(.kaysa-items) {
+        opacity: 1;
+
+        // Same fast fade-in as hover
+        transition: opacity 0.15s ease-in;
+
+        // Disabled buttons remain at 50% opacity
+        &:disabled {
+          opacity: 0.5;
+        }
+      }
+    }
+
+    // ===============================
+    // Touch devices (coarse pointer + no hover support)
+    // ===============================
+    @media (hover: none) and (pointer: coarse) {
+
+      // On mobile/tablet: show buttons when scrolling,
+      // but avoid interfering with buttons themselves (e.g. autoplay pause/play)
+      &.scrolling> :not(.kaysa-items):not(.kaysa-button) {
+        opacity: 1;
+
+        // Use fast fade-in for mobile too
+        transition: opacity 0.15s ease-in;
+
+        // Maintain reduced visibility for disabled elements
+        &:disabled {
+          opacity: 0.5;
+        }
       }
     }
   }
