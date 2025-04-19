@@ -25,7 +25,7 @@ Thumbs.db
 
 # Customized
 # Documentation files (exclude all except README.md)
-!README.md
 *.md
+!README.md
 .htaccess
 /archive
