@@ -44,7 +44,7 @@ class Kaysa {
   }
 
   showContent () {
-    this.container.classList.add('visible');
+    this.container.classList.add('is-visible');
   }
 
   /**
@@ -74,11 +74,11 @@ class Kaysa {
      * Prepare DOM structure
      */
   prepareStructure () {
-    this.itemsContainer = this.container.querySelector('.kaysa-items');
+    this.itemsContainer = this.container.querySelector('.kaysa__items');
 
     if (!this.itemsContainer) {
       this.itemsContainer = document.createElement('div');
-      this.itemsContainer.className = 'kaysa-items';
+      this.itemsContainer.className = 'kaysa__items';
       this.itemsContainer.style.gap = this.config.get('gap');
 
       while (this.container.firstChild) {
@@ -88,7 +88,7 @@ class Kaysa {
       this.container.appendChild(this.itemsContainer);
     }
 
-    this.container.classList.add('kaysa-container');
+    this.container.classList.add('kaysa__container');
   }
 
   /**
@@ -130,7 +130,7 @@ class Kaysa {
      */
   createButton (direction) {
     const btn = document.createElement('button');
-    btn.className = `kaysa-button kaysa-button--${direction}`;
+    btn.className = `kaysa__button kaysa__button--${direction}`;
     
     // Get button content from configuration
     const content = this.config.get(`${direction === 'left' ? 'prevButtonContent' : 'nextButtonContent'}`);

@@ -2,7 +2,7 @@
 
 // kaysa.scss
 .kaysa {
-  &-container {
+  &__container {
     position: relative;
     width: 100%;
 
@@ -10,12 +10,12 @@
     visibility: hidden;
 
     // When the container becomes visible (e.g. via JS), override visibility
-    &.visible {
+    &.is-visible {
       visibility: visible !important;
     }
 
-    // Buttons and other children (except .kaysa-items) are hidden by default
-    &> :not(.kaysa-items) {
+    // Buttons and other children (except .kaysa__items) are hidden by default
+    &> :not(.kaysa__items) {
       opacity: 0;
 
       // Slow fade-out transition for when buttons disappear
@@ -31,7 +31,7 @@
     @media (hover: hover) and (pointer: fine) {
 
       // When the user hovers over the slider, show buttons quickly
-      &:hover> :not(.kaysa-items) {
+      &:hover> :not(.kaysa__items) {
         opacity: 1;
 
         // Faster fade-in for immediate visual feedback
@@ -43,8 +43,8 @@
         }
       }
 
-      // Also make buttons visible when scrolling starts
-      &.scrolling> :not(.kaysa-items) {
+      // Also make buttons visible when is-scrolling starts
+      &.is-scrolling> :not(.kaysa__items) {
         opacity: 1;
 
         // Same fast fade-in as hover
@@ -62,9 +62,9 @@
     // ===============================
     @media (hover: none) and (pointer: coarse) {
 
-      // On mobile/tablet: show buttons when scrolling,
+      // On mobile/tablet: show buttons when is-scrolling,
       // but avoid interfering with buttons themselves (e.g. autoplay pause/play)
-      &.scrolling> :not(.kaysa-items):not(.kaysa-button) {
+      &.is-scrolling> :not(.kaysa__items):not(.kaysa__button) {
         opacity: 1;
 
         // Use fast fade-in for mobile too
@@ -78,7 +78,7 @@
     }
   }
 
-  &-items {
+  &__items {
     display: flex;
     overflow-x: auto;
     gap: 1rem;
@@ -96,7 +96,7 @@
     }
   }
 
-  &-button {
+  &__button {
     position: absolute;
     top: 50%;
     width: 2.8rem;

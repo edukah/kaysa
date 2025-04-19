@@ -1,10 +1,10 @@
 @use "../base/variables";
 
-// enhanced-scrollbar.scss
-.kaysa-items {
+// kaysa_enhanced-scrollbar__thumb.scss
+.kaysa__items {
   scrollbar-width: none;
 
-  .scrolling>& {
+  .is-scrolling>& {
     scroll-behavior: auto !important;
   }
 
@@ -20,13 +20,13 @@
   }
 }
 
-.enhanced-scrollbar-track {
+.kaysa_enhanced-scrollbar__thumb-track {
   height: 0.25rem;
   border-radius: 0.2rem;
   margin-top: 0.2rem;
   display: none;
 
-  .enhanced-scrollbar {
+  .kaysa_enhanced-scrollbar__thumb {
     height: 100%;
     background: var(--text-color-hint);
     width: 0;

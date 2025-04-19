@@ -40,7 +40,7 @@ Minyatur also allows configuring behavior using `data-*` attributes directly in 
 <div class="slider"
      data-kaysa-scroll-speed="0.7"
      data-kaysa-gap="20px"
-     data-kaysa-use-enhanced-scrollbar="true">
+     data-kaysa-use-kaysa_enhanced-scrollbar__thumb="true">
   <div>Item 1</div>
   <div>Item 2</div>
   <div>Item 3</div>
@@ -80,7 +80,7 @@ new Kaysa({
 <div class="slider"
      data-kaysa-scroll-speed="0.7"
      data-kaysa-gap="20px"
-     data-kaysa-use-enhanced-scrollbar="true"
+     data-kaysa-use-kaysa_enhanced-scrollbar__thumb="true"
      data-kaysa-prev-button-content="←"
      data-kaysa-next-button-content="→">
   <!-- slider items here -->
@@ -95,7 +95,7 @@ new Kaysa({
 |----------------------|-----------|-----------|-----------------------------------------------------------------------------------------------|----------------------------------|
 | `scrollSpeed`        | `number`  | `0.8`     | Determines the scrolling speed (value between 0.1–1).                                         | `data-kaysa-scroll-speed`        |
 | `gap`                | `string`  | `'15px'`  | Sets the gap between items (CSS value).                                                       | `data-kaysa-gap`                 |
-| `enhancedScrollbar` | `boolean` | `false`   | Enables/disables the custom scrollbar.                                                        | `data-kaysa-use-enhanced-scrollbar`|
+| `enhancedScrollbar` | `boolean` | `false`   | Enables/disables the custom scrollbar.                                                        | `data-kaysa-use-kaysa_enhanced-scrollbar__thumb`|
 | `prevButtonContent`  | `string`  | `'<'`     | Content of the previous button.                                                               | `data-kaysa-prev-button-content` |
 | `nextButtonContent`  | `string`  | `'>'`     | Content of the next button.                                                                   | `data-kaysa-next-button-content` |
 

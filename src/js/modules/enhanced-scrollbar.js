@@ -15,7 +15,7 @@ class EnhancedScrollbar {
    */
   constructor (containerElement, config = {}) {
     this.kaysaContainer = containerElement;
-    this.kaysaItems = containerElement.querySelector('.kaysa-items');
+    this.kaysaItems = containerElement.querySelector('.kaysa__items');
 
     this.initScrollbar();
     this.setupEventListeners();
@@ -26,9 +26,9 @@ class EnhancedScrollbar {
    */
   initScrollbar () {
     this.track = document.createElement('div');
-    this.track.className = 'enhanced-scrollbar-track';
+    this.track.className = 'kaysa_enhanced-scrollbar__thumb-track';
     this.scrollbar = document.createElement('div');
-    this.scrollbar.className = 'enhanced-scrollbar';
+    this.scrollbar.className = 'kaysa_enhanced-scrollbar__thumb';
     this.track.appendChild(this.scrollbar);
     this.kaysaItems.parentNode.appendChild(this.track);
     this.updateScrollbar();
@@ -52,12 +52,12 @@ class EnhancedScrollbar {
       this.scrollbar.style.transform = `translateX(${scrollbarLeft}px)`;
 
       if (scrollbarLeft) {
-        this.kaysaContainer.classList.add('scrolling');
+        this.kaysaContainer.classList.add('is-scrolling');
 
         window.setTimeout(() => {
           if (this.isDragging) return;
 
-          this.kaysaContainer.classList.remove('scrolling');
+          this.kaysaContainer.classList.remove('is-scrolling');
         }, 1200);
       }
     }
@@ -72,7 +72,7 @@ class EnhancedScrollbar {
     this.startX = e.clientX;
     this.startScrollLeft = this.kaysaItems.scrollLeft;
     document.body.style.cursor = 'grabbing';
-    this.kaysaContainer.classList.add('scrolling');
+    this.kaysaContainer.classList.add('is-scrolling');
     e.preventDefault();
 
     document.addEventListener('mousemove', this.handleMouseMove);
@@ -103,7 +103,7 @@ class EnhancedScrollbar {
 
     this.isDragging = false;
     document.body.style.cursor = '';
-    this.kaysaContainer.classList.remove('scrolling');
+    this.kaysaContainer.classList.remove('is-scrolling');
 
     document.removeEventListener('mousemove', this.handleMouseMove);
     document.removeEventListener('mouseup', this.handleMouseUp);
@@ -131,10 +131,10 @@ class EnhancedScrollbar {
 
   /**
    * Initializes EnhancedScrollbar instances for all matching elements in the document.
-   * @param {string} [selector='.kaysa-container'] - CSS selector to find container elements.
+   * @param {string} [selector='.kaysa__container'] - CSS selector to find container elements.
    * @returns {EnhancedScrollbar[]} An array of EnhancedScrollbar instances.
    */
-  static initAll (selector = '.kaysa-container') {
+  static initAll (selector = '.kaysa__container') {
     return Array.from(document.querySelectorAll(selector)).map((el) => new EnhancedScrollbar(el));
   }
 }
