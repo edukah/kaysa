@@ -32,7 +32,7 @@
   {"text": "<div id=\"slider\" ", "style": ""},
   {"text": "    data-kaysa-scroll-speed=\"0.7\" <!-- Scroll speed (Optional) -->", "style": ""},
   {"text": "    data-kaysa-gap=\"20px\"         <!-- Gap between items (Optional) -->", "style": ""},
-  {"text": "    data-kaysa-kaysa_enhanced-scrollbar__thumb=\"true\" <!-- Custom scrollbar usage (Optional) -->", "style": ""},
+  {"text": "    data-kaysa-enhanced-scrollbar=\"true\" <!-- Custom scrollbar usage (Optional) -->", "style": ""},
   {"text": "    data-kaysa-prev-button-content=\"←\"     <!-- Previous button content (Optional) -->", "style": ""},
   {"text": "    data-kaysa-next-button-content=\"→\">    <!-- Next button content (Optional) -->", "style": ""},
   {"text": "  <div>Item 1</div>", "style": ""},
