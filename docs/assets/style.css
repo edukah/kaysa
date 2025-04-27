@@ -143,6 +143,10 @@ footer p {
   margin-top: 40px;
 }
 
+.width-limited-section div {
+  max-width: 900px;
+}
+
 /* dark mode */
 body.dark-mode {
   --nav-bg: #121212;
