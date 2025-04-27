@@ -83,6 +83,20 @@ p {
   margin: 0 auto 2rem;
 }
 
+pre {
+  text-align: center;
+  margin: 0 auto 2rem;
+}
+
+ul {
+  text-align: center;
+  margin: 0 auto 2rem;
+}
+
+li {
+  list-style: none;
+}
+
 /* Footer */
 footer {
   text-align: center;
@@ -125,7 +139,7 @@ footer p {
   margin: 0 auto;
 }
 
-.content ~ .content {
+.content~.content {
   margin-top: 40px;
 }
 
@@ -259,6 +273,8 @@ body.dark-mode {
   gap: 2rem;
   list-style: none;
   padding: 10px 0;
+  text-align: unset;
+  margin: 0;
 }
 
 /* Responsive */
