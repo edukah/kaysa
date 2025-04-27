@@ -1,9 +1,7 @@
-@use "../base/variables";
+@use '../base/variables';
 
 // kaysa_enhanced-scrollbar__thumb.scss
 .kaysa__items {
-  scrollbar-width: none;
-
   .is-scrolling>& {
     scroll-behavior: auto !important;
   }
@@ -12,8 +10,8 @@
   scrollbar-width: none;
   /* Firefox */
   -ms-overflow-style: none;
-  /* IE/Edge */
 
+  /* IE/Edge */
   &::-webkit-scrollbar {
     display: none;
     /* Chrome/Safari/Opera */
