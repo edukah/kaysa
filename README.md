@@ -25,7 +25,7 @@ Make sure to include the stylesheet and the script:
 
 ```html
 <head>
-  <link rel="stylesheet" href="dist/kaysa.min.css" />
+  <link rel="stylesheet" href="dist/kaysa.min.css">
   <script type="text/javascript" src="dist/kaysa.min.js"></script>
 </head>
 ```
