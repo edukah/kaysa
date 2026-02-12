@@ -1,4 +1,11 @@
+@function tweak-alpha($color, $alpha) {
+  @return rgba($color, $alpha);
+}
+
 /* colors */
+$color-white: rgba(255, 255, 255, 1);
+$color-black: rgba(0, 0, 0, 1);
+
 $color-primary: #2563eb;
 $color-secondary: #1e40af;
 
@@ -43,7 +50,13 @@ $button-diabled-background-color-dark-theme: rgba(35, 35, 37, 0.5);
   }
 
   /* Other */
-  --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  --shadow-hover: 0 10px 20px rgba(0, 0, 0, 0.15);
+  --shadow: 0 2px 3px #{tweak-alpha($color-black, 0.1)};
+  --shadow-hover: 0 3px 4px #{tweak-alpha($color-black, 0.15)};
+
+  body.dark-mode {
+    --shadow: 0 2px 3px #{tweak-alpha($color-white, 0.1)};
+    --shadow-hover: 0 3px 4px #{tweak-alpha($color-white, 0.15)};
+  }
+
   --transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }

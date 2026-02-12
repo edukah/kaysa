@@ -18,7 +18,7 @@ class Kaysa {
    */
   constructor (targetOrConfig = {}) {
     // If targetOrConfig is an HTMLElement, accept it as the target
-    if (targetOrConfig instanceof window.HTMLElement) {
+    if (targetOrConfig instanceof globalThis.HTMLElement) {
 
       this.container = targetOrConfig;
       this.config.set('target', targetOrConfig);

@@ -54,7 +54,7 @@ class EnhancedScrollbar {
       if (scrollbarLeft) {
         this.kaysaContainer.classList.add('is-scrolling');
 
-        window.setTimeout(() => {
+        globalThis.setTimeout(() => {
           if (this.isDragging) return;
 
           this.kaysaContainer.classList.remove('is-scrolling');
@@ -115,7 +115,7 @@ class EnhancedScrollbar {
   setupEventListeners () {
     this.scrollbar.addEventListener('mousedown', this.handleMouseDown);
     this.kaysaItems.addEventListener('scroll', this.updateScrollbar);
-    new window.ResizeObserver(this.updateScrollbar).observe(this.kaysaItems);
+    new globalThis.ResizeObserver(this.updateScrollbar).observe(this.kaysaItems);
   }
 
   /**

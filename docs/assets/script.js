@@ -37,7 +37,7 @@ document.addEventListener('DOMContentLoaded', () => {
  */
 document.addEventListener('DOMContentLoaded', () => {
   // Get current page URL
-  const currentUrl = new URL(window.location.href);
+  const currentUrl = new URL(globalThis.location.href);
   
   // Extract filename WITHOUT query parameters or hash
   const currentPath = currentUrl.pathname; // "/example.html"
@@ -48,7 +48,7 @@ document.addEventListener('DOMContentLoaded', () => {
     
     li.querySelectorAll('a').forEach(a => {
       // Create URL object using current page as base for relative URLs
-      const linkUrl = new URL(a.href, window.location.href);
+      const linkUrl = new URL(a.href, globalThis.location.href);
       
 
       // Get clean pathname only (ignores query/hash)

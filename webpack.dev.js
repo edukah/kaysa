@@ -1,19 +1,13 @@
-// webpack.dev.js (cleaned up ESM version)
-
 import path from 'path';
 import fs from 'fs';
-import { fileURLToPath } from 'url';
 import { merge } from 'webpack-merge';
 import common from './webpack.common.js';
 
+const scriptName = 'kaysa';
 const entry = {
   'build.dev.js': path.join(common.context, 'src/js/index.js'),
   'build.dev.junk': path.join(common.context, 'src/scss/main.scss')
 };
-
-const scriptName = 'kaysa';
-
-// webpack dev server host configration
 const devServerConfig = {
   type: 'http',
   host: 'localhost',
@@ -86,4 +80,3 @@ export default merge(common, {
     }
   }
 });
-
