@@ -51,7 +51,12 @@ export default {
           'css-loader',
           {
             loader: 'sass-loader',
-            options: { api: 'modern' }
+            options: {
+              api: 'modern',
+              sassOptions: {
+                loadPaths: [path.resolve(context, '..')]
+              }
+            }
           }
         ]
       }
