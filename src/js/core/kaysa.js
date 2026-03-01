@@ -152,6 +152,8 @@ class Kaysa {
     this.container.addEventListener('mouseleave', this.handleMouseLeave);
 
     this.itemsContainer.addEventListener('scroll', () => this.updateButtons());
+
+    new ResizeObserver(() => this.updateButtons()).observe(this.itemsContainer);
   }
 
   /**
@@ -171,11 +173,16 @@ class Kaysa {
      */
   updateButtons () {
     const { scrollLeft, scrollWidth, clientWidth } = this.itemsContainer;
-    const maxScroll = scrollWidth - clientWidth;
-    
-    // Update state of buttons
-    this.prevBtn.disabled = scrollLeft <= 0;
-    this.nextBtn.disabled = scrollLeft >= maxScroll;
+    const hasScroll = scrollWidth > clientWidth;
+
+    this.prevBtn.style.display = hasScroll ? '' : 'none';
+    this.nextBtn.style.display = hasScroll ? '' : 'none';
+
+    if (hasScroll) {
+      const maxScroll = scrollWidth - clientWidth;
+      this.prevBtn.disabled = scrollLeft <= 0;
+      this.nextBtn.disabled = scrollLeft >= maxScroll;
+    }
 
     // Update style properties
     /* if (scrollLeft <= 0) {
