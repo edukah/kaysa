@@ -32,7 +32,7 @@ Make sure to include the stylesheet and the script:
 
 ### Understanding HTML Structure
 
-Minyatur also allows configuring behavior using `data-*` attributes directly in HTML. This is ideal for simple use-cases without writing JavaScript.
+Kaysa also allows configuring behavior using `data-*` attributes directly in HTML. This is ideal for simple use-cases without writing JavaScript.
 
 **Example:**
 

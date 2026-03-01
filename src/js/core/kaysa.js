@@ -67,7 +67,6 @@ class Kaysa {
       });
     });
 
-    console.log(this.config);
   }
 
   /**
