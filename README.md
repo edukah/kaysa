@@ -11,7 +11,7 @@
 - 🌓 **Dark/Light Mode Support** (via CSS class)
 - 📱 **Mobile-friendly** touch support
 - ⚡ **Minimal footprint, zero dependencies**
-- 🔍 **Interactive Help** (`Kaysa.manual()`)
+- 🔍 **Interactive Help** (`Kaysa.help()`)
 
 ---
 
@@ -160,7 +160,7 @@ No configuration needed. Kaysa relies on native `overflow-x` scrolling, so touch
 Run the following command in the browser console to view interactive documentation:
 
 ```javascript
-Kaysa.manual(); // Shows both syntax options
+Kaysa.help(); // Shows both syntax options
 ```
 
 ---

@@ -1,5 +1,5 @@
 import EnhancedScrollbar from '../modules/enhanced-scrollbar.js';
-import manualData from './manual.json';
+import helpData from '../docs/help.json';
 
 class Kaysa {
   static DEFAULTS = {
@@ -248,17 +248,11 @@ class Kaysa {
   /**
    * Static method to display documentation in the console.
    */
-  static manual () {
-    // Automatically add '\n' to each line
-    const lines = manualData.map(({ text, style = "" }) => [`%c${text}\n`, style]);
+  static help () {
+    const lines = helpData.map(({ text, style }) => [`%c${text}\n`, style]);
+    const messages = lines.map(([text]) => text);
+    const styles = lines.flatMap(([_, style]) => style || '');
 
-    console.log(lines);
-
-    // Separate texts and styles
-    const messages = lines.map(([text]) => text); // Texts
-    const styles = lines.flatMap(([_, style]) => style || ''); // Styles
-
-    // Print to console
     console.log(messages.join(''), ...styles);
   }
 }
