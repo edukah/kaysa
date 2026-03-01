@@ -33,6 +33,14 @@ No test suite exists. Validation is via ESLint (runs automatically on every buil
 
 **Configuration options:** `scrollSpeed` (0.8), `gap` ('15px'), `enhancedScrollbar` (false), `prevButtonContent` ('<'), `nextButtonContent` ('>')
 
+**Public API methods:**
+- `add(element, index?)` — Adds an element to the slider. `index` optional, defaults to end
+- `remove(index?)` — Removes an element from the slider. `index` optional, defaults to last item
+- `scroll(direction)` — Scrolls the slider ('left' or 'right')
+- `updateButtons()` — Recalculates button visibility and disabled state
+
+**Auto-hide buttons:** Nav buttons are automatically hidden when content doesn't overflow (`scrollWidth <= clientWidth`). A `ResizeObserver` on the items container keeps button visibility in sync with dynamic content and layout changes. Enhanced scrollbar (when enabled) also syncs automatically via `updateButtons()`.
+
 ## SCSS Structure
 
 Entry: `src/scss/main.scss` → imports base + modules.

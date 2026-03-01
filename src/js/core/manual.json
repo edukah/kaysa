@@ -41,6 +41,15 @@
   {"text": "  <div>Item 4</div>", "style": ""},
   {"text": "</div>", "style": ""},
   {"text": "", "style": ""},
+  {"text": "🔧 API Methods:", "style": "color: #00b894; font-weight: bold; font-size: 1.2em;"},
+  {"text": "  slider.add(element, index?)    — Add an element (index optional, default: end)", "style": "color: #fd79a8;"},
+  {"text": "  slider.remove(index?)          — Remove an element (index optional, default: last)", "style": "color: #fd79a8;"},
+  {"text": "  slider.scroll(direction)       — Scroll the slider ('left' or 'right')", "style": "color: #fd79a8;"},
+  {"text": "", "style": ""},
+  {"text": "❗ Note:", "style": "color: #e17055; font-weight: bold;"},
+  {"text": "  - Nav buttons auto-hide when content doesn't overflow.", "style": ""},
+  {"text": "  - Buttons reappear dynamically as items are added or container resizes.", "style": ""},
+  {"text": "", "style": ""},
   {"text": "🌐 GitHub Repository: https://github.com/edukah/kaysa", "style": "color: #74b9ff; text-decoration: underline;"},
   {"text": "🚀 Live Demo: https://edukah.github.io/kaysa/", "style": "color: #ff7675; text-decoration: underline;"}
 ]

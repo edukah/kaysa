@@ -184,6 +184,10 @@ class Kaysa {
       this.nextBtn.disabled = scrollLeft >= maxScroll;
     }
 
+    if (this.enhancedScrollbar) {
+      this.enhancedScrollbar.updateScrollbar();
+    }
+
     // Update style properties
     /* if (scrollLeft <= 0) {
       this.prevBtn.style.opacity = '0.3';
@@ -200,6 +204,38 @@ class Kaysa {
       this.nextBtn.style.opacity = '1';
       this.nextBtn.style.cursor = 'pointer';
     } */
+  }
+
+  /**
+     * Add an element to the slider
+     * @param {HTMLElement} element - Element to add
+     * @param {number} [index] - Position to insert at (default: end)
+     */
+  add (element, index) {
+    const { children } = this.itemsContainer;
+
+    if (index !== undefined && children[index]) {
+      this.itemsContainer.insertBefore(element, children[index]);
+    } else {
+      this.itemsContainer.appendChild(element);
+    }
+
+    this.updateButtons();
+  }
+
+  /**
+     * Remove an element from the slider
+     * @param {number} [index] - Index of the element to remove (default: last)
+     */
+  remove (index) {
+    const { children } = this.itemsContainer;
+    if (!children.length) return;
+
+    const item = index !== undefined ? children[index] : children[children.length - 1];
+    if (item) {
+      item.remove();
+      this.updateButtons();
+    }
   }
 
   handleMouseOver = () => {

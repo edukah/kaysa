@@ -101,6 +101,38 @@ new Kaysa({
 
 ---
 
+## 🔧 API Methods
+
+After initialization, you can dynamically manage slider items:
+
+```javascript
+const slider = new Kaysa({ target: '.slider' });
+
+// Add an element to the end
+const item = document.createElement('div');
+item.textContent = 'New Item';
+slider.add(item);
+
+// Add an element at a specific position
+slider.add(item, 0);  // Insert at the beginning
+
+// Remove the last element
+slider.remove();
+
+// Remove an element at a specific index
+slider.remove(2);  // Remove 3rd item
+```
+
+| Method                    | Description                                                      |
+|---------------------------|------------------------------------------------------------------|
+| `add(element, index?)`    | Adds an element to the slider. Appends to end if index omitted.  |
+| `remove(index?)`          | Removes an element. Removes last item if index omitted.          |
+| `scroll(direction)`       | Scrolls the slider (`'left'` or `'right'`).                      |
+
+> **Note:** Navigation buttons are automatically hidden when content doesn't overflow. They reappear dynamically as items are added or the container is resized.
+
+---
+
 ## 🌟 Interactive Help
 
 Run the following command in the browser console to view interactive documentation:
