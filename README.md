@@ -133,6 +133,28 @@ slider.remove(2);  // Remove 3rd item
 
 ---
 
+## 💡 Tips
+
+### Lazy Loading Images
+
+Kaysa uses native browser scroll, so you can use the built-in `loading="lazy"` attribute on images. The browser will only load images as they scroll into view — no extra configuration needed.
+
+```html
+<div class="slider">
+  <img src="photo-1.jpg" loading="lazy" alt="Photo 1">
+  <img src="photo-2.jpg" loading="lazy" alt="Photo 2">
+  <img src="photo-3.jpg" loading="lazy" alt="Photo 3">
+  <img src="photo-4.jpg" loading="lazy" alt="Photo 4">
+  <img src="photo-5.jpg" loading="lazy" alt="Photo 5">
+</div>
+```
+
+### Touch & Swipe
+
+No configuration needed. Kaysa relies on native `overflow-x` scrolling, so touch, swipe, and trackpad gestures work out of the box on all devices.
+
+---
+
 ## 🌟 Interactive Help
 
 Run the following command in the browser console to view interactive documentation:
