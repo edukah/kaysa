@@ -8,11 +8,6 @@
     "dist/",
     "src/scss/"
   ],
-  "exports": {
-    ".": "./dist/kaysa.min.js",
-    "./scss/*": "./src/scss/*",
-    "./dist/*": "./dist/*"
-  },
   "style": "dist/kaysa.min.css",
   "sass": "src/scss/main.scss",
   "scripts": {
