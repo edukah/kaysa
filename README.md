@@ -1,21 +1,22 @@
-# 🎠 Kaysa - Lightweight JavaScript Slider
+# Kaysa
 
 [![MIT License](https://img.shields.io/badge/license-MIT-green)](LICENSE)
 [![GitHub](https://img.shields.io/badge/View_on_GitHub-blue?logo=github)](https://github.com/edukah/kaysa)
 [![Live Demo](https://img.shields.io/badge/Demo-View%20Live-orange?logo=google-chrome)](https://edukah.github.io/kaysa/)
 
-✨ Kaysa: Modular horizontal slider with touch controls, custom scrollbars, and responsive gap settings. Built with pure JavaScript for seamless integration.
+Modular horizontal slider with touch controls, custom scrollbars, and responsive gap settings. Built with pure JavaScript for seamless integration.
 
-## ✨ Features
-- 🎨 **Dual Configuration** (JS + HTML attributes)
-- 🌓 **Dark/Light Mode Support** (via CSS class)
-- 📱 **Mobile-friendly** touch support
-- ⚡ **Minimal footprint, zero dependencies**
-- 🔍 **Interactive Help** (`Kaysa.help()`)
+## Features
+
+- **Dual Configuration** (JS + HTML attributes)
+- **Dark/Light Mode Support** (via CSS class)
+- **Mobile-friendly** touch support
+- **Minimal footprint, zero dependencies**
+- **Interactive Help** (`Kaysa.help()`)
 
 ---
 
-## 📦 Installation & ⚙️ Initialization
+## Installation & Initialization
 
 > **Note:** The `target` parameter is required and must be a valid DOM element or selector. All other options are optional.
 
@@ -59,7 +60,7 @@ Add `.dark-mode` class to `<body>` to activate dark theme:
 
 ---
 
-## 🚀 Basic Usage
+## Basic Usage
 
 ### JavaScript Configuration
 
@@ -89,7 +90,7 @@ new Kaysa({
 
 ---
 
-## ⚙️ Configuration Options
+## Configuration Options
 
 | Option               | Type      | Default   | Description                                                                                   | HTML Attribute                   |
 |----------------------|-----------|-----------|-----------------------------------------------------------------------------------------------|----------------------------------|
@@ -101,7 +102,7 @@ new Kaysa({
 
 ---
 
-## 🔧 API Methods
+## API Methods
 
 After initialization, you can dynamically manage slider items:
 
@@ -133,7 +134,7 @@ slider.remove(2);  // Remove 3rd item
 
 ---
 
-## 💡 Tips
+## Tips
 
 ### Lazy Loading Images
 
@@ -155,7 +156,7 @@ No configuration needed. Kaysa relies on native `overflow-x` scrolling, so touch
 
 ---
 
-## 🌟 Interactive Help
+## Interactive Help
 
 Run the following command in the browser console to view interactive documentation:
 
@@ -165,14 +166,14 @@ Kaysa.help(); // Shows both syntax options
 
 ---
 
-## 🌐 GitHub Links
+## Links
 
-- 🐞 [Report Issues](https://github.com/edukah/kaysa/issues)
-- 🌟 [Star Project](https://github.com/edukah/kaysa)
-- 🤝 [Contribute](https://github.com/edukah/kaysa/pulls)
+- [Report Issues](https://github.com/edukah/kaysa/issues)
+- [Star Project](https://github.com/edukah/kaysa)
+- [Contribute](https://github.com/edukah/kaysa/pulls)
 
 ---
 
-## 📜 License
+## License
 
 MIT © 2024 [edukah](https://github.com/edukah)
