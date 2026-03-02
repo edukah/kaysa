@@ -1,4 +1,4 @@
-# Kaysa
+# 🎠 Kaysa
 
 [![MIT License](https://img.shields.io/badge/license-MIT-green)](LICENSE)
 [![GitHub](https://img.shields.io/badge/View_on_GitHub-blue?logo=github)](https://github.com/edukah/kaysa)
@@ -6,7 +6,7 @@
 
 Modular horizontal slider with touch controls, custom scrollbars, and responsive gap settings. Built with pure JavaScript for seamless integration.
 
-## Features
+## ✨ Features
 
 - **Dual Configuration** (JS + HTML attributes)
 - **Dark/Light Mode Support** (via CSS class)
@@ -16,7 +16,7 @@ Modular horizontal slider with touch controls, custom scrollbars, and responsive
 
 ---
 
-## Installation & Initialization
+## 📦 Installation & Initialization
 
 > **Note:** The `target` parameter is required and must be a valid DOM element or selector. All other options are optional.
 
@@ -90,7 +90,7 @@ new Kaysa({
 
 ---
 
-## Configuration Options
+## ⚙️ Configuration Options
 
 | Option               | Type      | Default   | Description                                                                                   | HTML Attribute                   |
 |----------------------|-----------|-----------|-----------------------------------------------------------------------------------------------|----------------------------------|
@@ -102,7 +102,7 @@ new Kaysa({
 
 ---
 
-## API Methods
+## 🔧 API Methods
 
 After initialization, you can dynamically manage slider items:
 
@@ -134,7 +134,7 @@ slider.remove(2);  // Remove 3rd item
 
 ---
 
-## Tips
+## 💡 Tips
 
 ### Lazy Loading Images
 
@@ -174,6 +174,6 @@ Kaysa.help(); // Shows both syntax options
 
 ---
 
-## License
+## 📜 License
 
 MIT © 2024 [edukah](https://github.com/edukah)
