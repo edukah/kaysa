@@ -8,6 +8,7 @@ class Kaysa {
     enhancedScrollbar: false, // Use custom scrollbar (default: false)
     prevButtonContent: '<', // Default content for the left button
     nextButtonContent: '>', // Default content for the right button
+    onError: null, // (error, context) => {} — consumer error callback
   };
 
   config = new Map();
@@ -69,6 +70,20 @@ class Kaysa {
 
   }
 
+  handleError (error, context = {}) {
+    const onError = this.config.get('onError');
+
+    if (typeof onError === 'function') {
+      try {
+        onError(error, context);
+      } catch (callbackError) {
+        console.error('Kaysa: onError callback threw an error.', callbackError);
+      }
+    } else {
+      console.error('Kaysa:', error.message || error, context);
+    }
+  }
+
   /**
      * Prepare DOM structure
      */
@@ -108,7 +123,7 @@ class Kaysa {
     try {
       this.enhancedScrollbar = new EnhancedScrollbar(this.container, this.config.get('scrollbarOptions'));
     } catch (err) {
-      console.warn('Scrollbar initialization failed:', err);
+      this.handleError(err, { module: 'kaysa', operation: 'initScrollbar' });
     }
   }
 
@@ -211,15 +226,19 @@ class Kaysa {
      * @param {number} [index] - Position to insert at (default: end)
      */
   add (element, index) {
-    const { children } = this.itemsContainer;
+    try {
+      const { children } = this.itemsContainer;
 
-    if (index !== undefined && children[index]) {
-      this.itemsContainer.insertBefore(element, children[index]);
-    } else {
-      this.itemsContainer.appendChild(element);
+      if (index !== undefined && children[index]) {
+        this.itemsContainer.insertBefore(element, children[index]);
+      } else {
+        this.itemsContainer.appendChild(element);
+      }
+
+      this.updateButtons();
+    } catch (error) {
+      this.handleError(error, { module: 'kaysa', operation: 'add', element });
     }
-
-    this.updateButtons();
   }
 
   /**
@@ -227,13 +246,17 @@ class Kaysa {
      * @param {number} [index] - Index of the element to remove (default: last)
      */
   remove (index) {
-    const { children } = this.itemsContainer;
-    if (!children.length) return;
+    try {
+      const { children } = this.itemsContainer;
+      if (!children.length) return;
 
-    const item = index !== undefined ? children[index] : children[children.length - 1];
-    if (item) {
-      item.remove();
-      this.updateButtons();
+      const item = index !== undefined ? children[index] : children[children.length - 1];
+      if (item) {
+        item.remove();
+        this.updateButtons();
+      }
+    } catch (error) {
+      this.handleError(error, { module: 'kaysa', operation: 'remove', index });
     }
   }
 

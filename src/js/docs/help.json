@@ -9,6 +9,7 @@
   {"text": "  enhancedScrollbar: Enables/disables the custom scrollbar (true/false). Default: false (Optional)", "style": "color: #fd79a8;"},
   {"text": "  prevButtonContent: Content of the previous button. Default: '<' (Optional)", "style": "color: #fd79a8;"},
   {"text": "  nextButtonContent: Content of the next button. Default: '>' (Optional)", "style": "color: #fd79a8;"},
+  {"text": "  onError: Error callback: (error, context) => {}. Default: null (Optional)", "style": "color: #fd79a8;"},
   {"text": "", "style": ""},
   {"text": "❗ Note:", "style": "color: #e17055; font-weight: bold;"},
   {"text": "  - target is a required parameter that specifies the container for the slider.", "style": ""},

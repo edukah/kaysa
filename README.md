@@ -99,6 +99,7 @@ new Kaysa({
 | `enhancedScrollbar` | `boolean` | `false`   | Enables/disables the custom scrollbar.                                                        | `data-kaysa-enhanced-scrollbar`|
 | `prevButtonContent`  | `string`  | `'<'`     | Content of the previous button.                                                               | `data-kaysa-prev-button-content` |
 | `nextButtonContent`  | `string`  | `'>'`     | Content of the next button.                                                                   | `data-kaysa-next-button-content` |
+| `onError`            | `function\|null` | `null` | Error callback: `(error, context) => {}`                                                     | —                                |
 
 ---
 
@@ -131,6 +132,24 @@ slider.remove(2);  // Remove 3rd item
 | `scroll(direction)`       | Scrolls the slider (`'left'` or `'right'`).                      |
 
 > **Note:** Navigation buttons are automatically hidden when content doesn't overflow. They reappear dynamically as items are added or the container is resized.
+
+---
+
+## Error Handling
+
+Kaysa provides a centralized error handling mechanism via the `onError` callback. All recoverable errors (`initScrollbar`, `add()`, `remove()`) are routed through this callback.
+
+```javascript
+new Kaysa({
+  target: '.slider',
+  onError: (error, context) => {
+    // context: { module, operation, element? }
+    console.log(error, context);
+  }
+});
+```
+
+If `onError` is not provided, errors are logged to `console.error` by default. If the callback itself throws, the slider remains stable.
 
 ---
 
