@@ -130,6 +130,9 @@ slider.remove(2);  // Remove 3rd item
 | `add(element, index?)`    | Adds an element to the slider. Appends to end if index omitted.  |
 | `remove(index?)`          | Removes an element. Removes last item if index omitted.          |
 | `scroll(direction)`       | Scrolls the slider (`'left'` or `'right'`).                      |
+| `destroy()`               | Full cleanup — removes listeners, observers, buttons, and state. |
+| `enable()`                | Re-enables interactions after `disable()`.                       |
+| `disable()`               | Temporarily disables all slider interactions.                    |
 
 > **Note:** Navigation buttons are automatically hidden when content doesn't overflow. They reappear dynamically as items are added or the container is resized.
 

@@ -159,15 +159,20 @@ class Kaysa {
      * Add event listeners
      */
   addEventListeners () {
-    this.prevBtn.addEventListener('click', () => this.scroll('left'));
-    this.nextBtn.addEventListener('click', () => this.scroll('right'));
+    this._scrollLeftHandler = () => this.scroll('left');
+    this._scrollRightHandler = () => this.scroll('right');
+    this._scrollUpdateHandler = () => this.updateButtons();
+
+    this.prevBtn.addEventListener('click', this._scrollLeftHandler);
+    this.nextBtn.addEventListener('click', this._scrollRightHandler);
 
     this.container.addEventListener('mouseover', this.handleMouseOver);
     this.container.addEventListener('mouseleave', this.handleMouseLeave);
 
-    this.itemsContainer.addEventListener('scroll', () => this.updateButtons());
+    this.itemsContainer.addEventListener('scroll', this._scrollUpdateHandler);
 
-    new ResizeObserver(() => this.updateButtons()).observe(this.itemsContainer);
+    this._resizeObserver = new ResizeObserver(() => this.updateButtons());
+    this._resizeObserver.observe(this.itemsContainer);
   }
 
   /**
@@ -175,6 +180,8 @@ class Kaysa {
      * @param {string} direction - 'left' or 'right'
      */
   scroll (direction) {
+    if (this._disabled) return;
+
     const amount = this.itemsContainer.clientWidth * this.config.get('scrollSpeed');
     this.itemsContainer.scrollBy({
       left: direction === 'right' ? amount : -amount,
@@ -258,6 +265,37 @@ class Kaysa {
     } catch (error) {
       this.handleError(error, { module: 'kaysa', operation: 'remove', index });
     }
+  }
+
+  destroy () {
+    this.prevBtn.removeEventListener('click', this._scrollLeftHandler);
+    this.nextBtn.removeEventListener('click', this._scrollRightHandler);
+    this.container.removeEventListener('mouseover', this.handleMouseOver);
+    this.container.removeEventListener('mouseleave', this.handleMouseLeave);
+    this.itemsContainer.removeEventListener('scroll', this._scrollUpdateHandler);
+
+    this._resizeObserver.disconnect();
+
+    if (this.enhancedScrollbar) {
+      this.enhancedScrollbar.destroy();
+    }
+
+    this.prevBtn.remove();
+    this.nextBtn.remove();
+
+    this.container.classList.remove('kaysa__container', 'is-visible');
+    this.config.clear();
+  }
+
+  enable () {
+    this._disabled = false;
+    this.container.classList.remove('is-disabled');
+    this.updateButtons();
+  }
+
+  disable () {
+    this._disabled = true;
+    this.container.classList.add('is-disabled');
   }
 
   handleMouseOver = () => {

@@ -38,6 +38,9 @@ No test suite exists. Validation is via ESLint (runs automatically on every buil
 - `remove(index?)` — Removes an element from the slider. `index` optional, defaults to last item
 - `scroll(direction)` — Scrolls the slider ('left' or 'right')
 - `updateButtons()` — Recalculates button visibility and disabled state
+- `destroy()` — Full cleanup: removes listeners, observers, buttons, enhanced scrollbar, CSS classes, and config
+- `enable()` — Re-enables interactions after `disable()`
+- `disable()` — Temporarily disables all interactions (`scroll`, `add`, `remove` become no-ops, adds `is-disabled` class)
 
 **Error Handling:** Merkezi `handleError(error, context)` metodu kurtarılabilir hataları yakalar. `onError` config callback'i ile dinlenebilir:
 
