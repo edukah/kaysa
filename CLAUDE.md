@@ -22,7 +22,8 @@ No test suite exists. Validation is via ESLint (runs automatically on every buil
 
 **Core class:** `src/js/core/kaysa.js`
 - Constructor accepts an `HTMLElement` or a config object with a required `target` property
-- Uses a `Map` for config storage (`this.config`)
+- Uses ES2022 `#` private class fields — all internal state and methods are truly private, only `scroll()`, `add()`, `remove()`, `destroy()`, `enable()`, `disable()` are public
+- Uses a `Map` for config storage (`this.#config`)
 - Config merge priority (highest wins): HTML `data-kaysa-*` attributes → JS config object → `Kaysa.DEFAULTS`
 - On init: wraps children in `.kaysa__items` container (if not already present), creates nav buttons, attaches scroll/hover listeners
 
@@ -37,7 +38,6 @@ No test suite exists. Validation is via ESLint (runs automatically on every buil
 - `add(element, index?)` — Adds an element to the slider. `index` optional, defaults to end
 - `remove(index?)` — Removes an element from the slider. `index` optional, defaults to last item
 - `scroll(direction)` — Scrolls the slider ('left' or 'right')
-- `updateButtons()` — Recalculates button visibility and disabled state
 - `destroy()` — Full cleanup: removes listeners, observers, buttons, enhanced scrollbar, CSS classes, and config
 - `enable()` — Re-enables interactions after `disable()`
 - `disable()` — Temporarily disables all interactions (`scroll`, `add`, `remove` become no-ops, adds `is-disabled` class)
@@ -56,7 +56,7 @@ const slider = new Kaysa({
 
 `onError` verilmezse `console.error` fallback. Sarılan noktalar: `initScrollbar`, `add()`, `remove()`.
 
-**Auto-hide buttons:** Nav buttons are automatically hidden when content doesn't overflow (`scrollWidth <= clientWidth`). A `ResizeObserver` on the items container keeps button visibility in sync with dynamic content and layout changes. Enhanced scrollbar (when enabled) also syncs automatically via `updateButtons()`.
+**Auto-hide buttons:** Nav buttons are automatically hidden when content doesn't overflow (`scrollWidth <= clientWidth`). A `ResizeObserver` on the items container keeps button visibility in sync with dynamic content and layout changes. Enhanced scrollbar (when enabled) also syncs automatically via internal button update logic.
 
 ## SCSS Structure
 
