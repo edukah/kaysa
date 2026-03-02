@@ -233,6 +233,8 @@ class Kaysa {
      * @param {number} [index] - Position to insert at (default: end)
      */
   add (element, index) {
+    if (this._disabled) return;
+
     try {
       const { children } = this.itemsContainer;
 
@@ -253,6 +255,8 @@ class Kaysa {
      * @param {number} [index] - Index of the element to remove (default: last)
      */
   remove (index) {
+    if (this._disabled) return;
+
     try {
       const { children } = this.itemsContainer;
       if (!children.length) return;
