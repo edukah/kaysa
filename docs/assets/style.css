@@ -201,7 +201,7 @@ body.dark-mode {
   overflow: hidden;
 }
 
-.mode-toggle-switch.active {
+body.dark-mode .mode-toggle-switch {
   background-color: #2e2e31;
 }
 
@@ -215,7 +215,7 @@ body.dark-mode {
   z-index: 1;
 }
 
-.mode-toggle-switch.active::before {
+body.dark-mode .mode-toggle-switch::before {
   content: "☀️";
   right: unset;
   left: 10%;
@@ -234,7 +234,7 @@ body.dark-mode {
   z-index: 2;
 }
 
-.mode-toggle-switch.active::after {
+body.dark-mode .mode-toggle-switch::after {
   background-color: #7d7d7d;
   transform: translateX(30px);
 }
