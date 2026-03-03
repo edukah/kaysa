@@ -1,62 +1,31 @@
-@function tweak-alpha($color, $alpha) {
-  @return rgba($color, $alpha);
+.kaysa__container {
+	// Base colors (Sadrazam-compatible naming)
+	--color-white--f: rgba(255, 255, 255, 1);
+	--color-grey-900: rgba(35, 35, 37, 1);
+	--color-text-dark-1: rgba(23, 23, 23, 1);
+	--color-text-dark-3: rgba(132, 132, 132, 1);
+	--color-text-light-1: rgba(235, 231, 222, 1);
+	--color-text-light-3: rgba(165, 158, 165, 1);
+
+	// Utility tokens
+	--radius-sm: 0.2rem;
+	--radius-pill: 9999px;
+	--shadow: 0 2px 3px rgba(0, 0, 0, 0.1);
+	--shadow-hover: 0 3px 4px rgba(0, 0, 0, 0.15);
+	--transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+
+	// Component tokens
+	--button-text-color: var(--color-text-dark-1);
+	--button-background-color: var(--color-white--f);
+	--button-disabled-background-color: rgba(255, 255, 255, 0.5);
+	--text-color-hint: var(--color-text-light-3);
 }
 
-/* colors */
-$color-white: rgba(255, 255, 255, 1);
-$color-black: rgba(0, 0, 0, 1);
-
-$color-primary: #2563eb;
-$color-secondary: #1e40af;
-
-$text-color-primary-light-theme: rgba(235, 231, 222, 1);
-$text-color-hint-light-theme: rgba(165, 158, 165, 1);
-
-$text-color-primary-dark-theme: rgba(23, 23, 23, 1);
-$text-color-hint-dark-theme: rgba(132, 132, 132, 1);
-
-$color-grey-200: rgba(235, 235, 235, 1);
-$color-grey-400: rgba(204, 204, 204, 1);
-
-$button-background-color-light-theme: rgba(255, 255, 255, 1);
-$button-diabled-background-color-light-theme: rgba(255, 255, 255, 0.5);
-
-$button-background-color-dark-theme: rgba(35, 35, 37, 1);
-$button-diabled-background-color-dark-theme: rgba(35, 35, 37, 0.5);
-
-/* sass to css */
-:root {
-  --color-primary: #{$text-color-primary-light-theme};
-  --color-secondary: #{$text-color-hint-light-theme};
-
-  /* text */
-  --text-color-primary: #{$text-color-primary-light-theme};
-  --text-color-hint: #{$text-color-hint-light-theme};
-
-  body.dark-mode {
-    --text-color-primary: #{$text-color-primary-dark-theme};
-    --text-color-hint: #{$text-color-hint-dark-theme};
-  }
-
-  /* button */
-  --button-text-color: #{$text-color-primary-dark-theme};
-  --button-background-color: #{$button-background-color-light-theme};
-  --button-disabled-background-color: #{$button-diabled-background-color-light-theme};
-
-  body.dark-mode {
-    --button-text-color: #{$text-color-primary-light-theme};
-    --button-background-color: #{$button-background-color-dark-theme};
-    --button-disabled-background-color: #{$button-diabled-background-color-dark-theme};
-  }
-
-  /* Other */
-  --shadow: 0 2px 3px #{tweak-alpha($color-black, 0.1)};
-  --shadow-hover: 0 3px 4px #{tweak-alpha($color-black, 0.15)};
-
-  body.dark-mode {
-    --shadow: 0 2px 3px #{tweak-alpha($color-white, 0.1)};
-    --shadow-hover: 0 3px 4px #{tweak-alpha($color-white, 0.15)};
-  }
-
-  --transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+body.dark-mode .kaysa__container {
+	--button-text-color: var(--color-text-light-1);
+	--button-background-color: var(--color-grey-900);
+	--button-disabled-background-color: rgba(35, 35, 37, 0.5);
+	--text-color-hint: var(--color-text-dark-3);
+	--shadow: 0 2px 3px rgba(255, 255, 255, 0.1);
+	--shadow-hover: 0 3px 4px rgba(255, 255, 255, 0.15);
 }

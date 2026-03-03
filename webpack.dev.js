@@ -11,7 +11,7 @@ const entry = {
 const devServerConfig = {
   type: 'http',
   host: 'localhost',
-  port: 9006,
+  port: 9003,
   get target () {
     return `${this.type}://${this.host}:${this.port}`;
   },
