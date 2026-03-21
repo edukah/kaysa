@@ -10,15 +10,19 @@ function toggleMode () {
 }
 
 function openPopup () {
-  document.getElementById("examplesPopupOverlay").style.visibility = "visible";
-  document.getElementById("examplesPopupOverlay").style.opacity = "1";
-  document.getElementById("examplesPopup").style.top = "20%";
+  const overlay = document.getElementById("examplesPopupOverlay");
+  const popup = document.getElementById("examplesPopup");
+  overlay.style.visibility = "visible";
+  overlay.style.opacity = "1";
+  popup.classList.add("is-open");
 }
 
 function closePopup () {
-  document.getElementById("examplesPopupOverlay").style.opacity = "0";
-  document.getElementById("examplesPopupOverlay").style.visibility = "hidden";
-  document.getElementById("examplesPopup").style.top = "-100%";
+  const overlay = document.getElementById("examplesPopupOverlay");
+  const popup = document.getElementById("examplesPopup");
+  overlay.style.opacity = "0";
+  overlay.style.visibility = "hidden";
+  popup.classList.remove("is-open");
 }
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -29,40 +33,14 @@ document.addEventListener('DOMContentLoaded', () => {
 
 /**
  * Sets active state for navigation links based on current page URL
- * Handles both main nav links and dropdown menu links
  */
 document.addEventListener('DOMContentLoaded', () => {
-  // Get current page URL
-  const currentUrl = new URL(globalThis.location.href);
-  
-  // Extract filename WITHOUT query parameters or hash
-  const currentPath = currentUrl.pathname; // "/example.html"
-  const currentPage = currentPath.split('/').pop() || 'index.html'; // "example.html"
-  
-  document.querySelectorAll('nav ul.nav-links > li').forEach(li => {
-    let hasActiveChild = false;
-    
-    li.querySelectorAll('a').forEach(a => {
-      // Create URL object using current page as base for relative URLs
-      const linkUrl = new URL(a.href, globalThis.location.href);
-      
+  const currentPage = new URL(globalThis.location.href).pathname.split('/').pop() || 'index.html';
 
-      // Get clean pathname only (ignores query/hash)
-      const linkPath = linkUrl.pathname; // "/basic.html"
-      const linkPage = linkPath.split('/').pop(); // "basic.html"
-      
-      // Reset active state
-      a.classList.remove('active');
-      
-      // Compare ONLY the filename portions
-      if (linkPage === currentPage) {
-        a.classList.add('active');
-        hasActiveChild = true;
-      }
-    });
-    
-    if (hasActiveChild) {
-      li.querySelector('a:first-child').classList.add('active');
+  document.querySelectorAll('nav a, .navi-popup a, .bottom-tab a').forEach(a => {
+    const linkPage = new URL(a.href, globalThis.location.href).pathname.split('/').pop();
+    if (linkPage === currentPage) {
+      a.classList.add('active');
     }
   });
 });

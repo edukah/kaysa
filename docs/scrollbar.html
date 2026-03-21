@@ -64,22 +64,24 @@
         <!-- Navigation Header -->
         <nav class="top-navbar">
             <div class="nav-container">
+                <a href="index.html" class="nav-logo">Kaysa</a>
                 <ul class="nav-links">
                     <li><a href="index.html">Home</a></li>
                     <li>
                         <a href="javascript:void(0)" onclick="openPopup(); return false;">Examples</a>
-                        <div class="navi-popup-overlay" id="examplesPopupOverlay"></div>
-                        <div class="navi-popup" id="examplesPopup">
-                            <h3>Examples</h3>
-                            <ul>
-                                <li><a href="basic.html">Basic</a></li>
-                                <li><a href="scrollbar.html">with Scrollbar</a></li>
-                            </ul>
-                            <button class="close-popup" onclick="closePopup()">✕</button>
-                        </div>
                     </li>
                     <li><a href="https://github.com/edukah/kaysa" target="_blank">GitHub</a></li>
                 </ul>
+                <div class="navi-popup-overlay" id="examplesPopupOverlay" onclick="closePopup()">
+                    <div class="navi-popup" id="examplesPopup" onclick="event.stopPropagation()">
+                        <h3>Examples</h3>
+                        <ul>
+                            <li><a href="basic.html">Basic</a></li>
+                            <li><a href="scrollbar.html">with Scrollbar</a></li>
+                        </ul>
+                        <button class="close-popup" onclick="closePopup()">✕</button>
+                    </div>
+                </div>
                 <div class="dark-mode-button-container">
                     <div class="mode-toggle-switch" onclick="toggleMode()"></div>
                 </div>
@@ -118,6 +120,26 @@
             });
         });
     </script>
+    <nav class="bottom-tab">
+        <div class="bottom-tab__bar">
+            <a href="index.html" class="bottom-tab__item">
+                <i class="ph-bold ph-house"></i>
+                <span>Home</span>
+            </a>
+            <button class="bottom-tab__item" onclick="openPopup()">
+                <i class="ph-bold ph-squares-four"></i>
+                <span>Examples</span>
+            </button>
+            <button class="bottom-tab__item" onclick="toggleMode()">
+                <i class="ph-bold ph-moon"></i>
+                <span>Theme</span>
+            </button>
+            <a href="https://github.com/edukah/kaysa" target="_blank" class="bottom-tab__item">
+                <i class="ph-bold ph-github-logo"></i>
+                <span>GitHub</span>
+            </a>
+        </div>
+    </nav>
 </body>
 
 </html>
