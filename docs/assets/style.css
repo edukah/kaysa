@@ -9,7 +9,10 @@
   --github-bg: #f6f8fa;
   --card-bg: #ffffff;
   --text-color: #333333;
+  --text-muted: #636e72;
   --shadow-color: rgba(0, 0, 0, 0.1);
+  --border-color: #ddd;
+  --bg-subtle: #f0f0f0;
 }
 
 * {
@@ -236,7 +239,10 @@ body.dark-mode {
   --github-bg: #0d1117;
   --card-bg: #232325;
   --text-color: #f0f0f0;
+  --text-muted: #b2bec3;
   --shadow-color: rgba(255, 255, 255, 0.05);
+  --border-color: #444;
+  --bg-subtle: #2a2a2c;
 }
 
 * {
