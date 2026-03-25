@@ -11,7 +11,7 @@ const terserOptions = {
       extractComments: false,
       terserOptions: {
         compress: {
-          drop_console: true
+          pure_funcs: ['console.log', 'console.debug']
         },
         format: {
           comments: false,

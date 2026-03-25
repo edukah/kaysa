@@ -90,10 +90,10 @@ class Kaysa {
       try {
         onError(error, context);
       } catch (callbackError) {
-        console.error('Kaysa: onError callback threw an error.', callbackError);
+        console.error('[Kaysa] onError callback threw an error.', callbackError);
       }
     } else {
-      console.error('Kaysa:', error.message || error, context);
+      console.error('[Kaysa]', error.message || error, context);
     }
   }
 
@@ -311,7 +311,7 @@ class Kaysa {
     const messages = lines.map(([text]) => text);
     const styles = lines.flatMap(([_, style]) => style || '');
 
-    console.log(messages.join(''), ...styles);
+    console.info(messages.join(''), ...styles);
   }
 }
 
