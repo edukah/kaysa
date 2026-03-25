@@ -15,6 +15,7 @@
 	--transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 
 	// Component tokens
+	--focus-outline-color: var(--color-text-dark-1);
 	--button-text-color: var(--color-text-dark-1);
 	--button-background-color: var(--color-white--f);
 	--button-disabled-background-color: rgba(255, 255, 255, 0.5);
@@ -22,6 +23,7 @@
 }
 
 body.dark-mode .kaysa__container {
+	--focus-outline-color: var(--color-text-light-1);
 	--button-text-color: var(--color-text-light-1);
 	--button-background-color: var(--color-grey-900);
 	--button-disabled-background-color: rgba(35, 35, 37, 0.5);

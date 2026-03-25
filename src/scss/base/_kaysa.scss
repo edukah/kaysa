@@ -121,6 +121,15 @@
 
     justify-content: center;
 
+    &:focus {
+      outline: 0;
+    }
+
+    &:focus-visible {
+      outline: 2px solid var(--focus-outline-color);
+      outline-offset: 1px;
+    }
+
     &:hover {
       transform: translateY(-50%) scale(1.05);
     }
