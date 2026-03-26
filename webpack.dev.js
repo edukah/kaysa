@@ -1,5 +1,6 @@
 import path from 'path';
 import fs from 'fs';
+import { execSync } from 'child_process';
 import { merge } from 'webpack-merge';
 import common from './webpack.common.js';
 
@@ -32,6 +33,9 @@ if(fs.existsSync(devServerConfig.sslPath.cert) && fs.existsSync(devServerConfig.
   };
 }
 
+let browserApp;
+try { execSync('which firefox', { stdio: 'ignore' }); browserApp = 'firefox'; } catch {}
+
 export default merge(common, {
   mode: 'development',
   entry,
@@ -61,7 +65,10 @@ export default merge(common, {
     devMiddleware: {
       publicPath: '/_hot/'
     },
-    open: [devServerConfig.target],
+    open: {
+      target: [devServerConfig.target],
+      ...(browserApp && { app: { name: browserApp } })
+    },
     hot: false,
     liveReload: true,
     compress: true,
