@@ -38,6 +38,23 @@ try { execSync('which firefox', { stdio: 'ignore' }); browserApp = 'firefox'; } 
 
 export default merge(common, {
   mode: 'development',
+
+  // Filesystem Cache — değişmeyen dosyaları yeniden derlemez, rebuild'leri dramatik hızlandırır.
+  cache: { type: 'filesystem' },
+
+  // Source Map Hafifletmesi (Hız Aşırtma)
+  // Ağır source-map yerine, dev modunda çok daha hızlı çalışan bu versiyonu kullanıyoruz.
+  devtool: 'eval-cheap-module-source-map',
+
+  // İzleme (Watch) Kısıtlamaları
+  watchOptions: {
+    // Claude'un ve gereksiz klasörlerin izlenmesini tamamen yasaklıyoruz
+    ignored: ['**/node_modules', '**/.claude/**', '**/.git/**', '**/*.log'],
+    // Ufak değişikliklerde anında derlemek yerine 600 milisaniye bekleyip topluca derler.
+    // Bu, tarayıcıya üst üste DDOS atılmasını engeller.
+    aggregateTimeout: 600,
+  },
+
   entry,
   output: {
     filename: '[name]',
@@ -71,7 +88,8 @@ export default merge(common, {
     },
     hot: false,
     liveReload: true,
-    compress: true,
+    // Dev modunda gzip sıkıştırma gereksiz CPU yükü — tarayıcıya ham gönder.
+    compress: false,
     static: [
       { directory: path.join(common.context, 'dev') },
       { directory: path.join(common.context, 'docs') }
