@@ -47,6 +47,8 @@ class Kaysa {
       throw new TypeError('Kaysa: Input must be an HTMLElement or a configuration object');
     }
 
+    if (this.#container.__kaysa) return this.#container.__kaysa;
+
     // Prepare and initialize slider structure
     this.#prepareStructure();
     this.#init();
