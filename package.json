@@ -9,8 +9,7 @@
   "files": [
     "dist/",
     "src/js/",
-    "src/scss/",
-    "CHANGELOG.md"
+    "src/scss/"
   ],
   "sideEffects": [
     "*.css",
