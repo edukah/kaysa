@@ -12,12 +12,19 @@
     "src/scss/",
     "CHANGELOG.md"
   ],
+  "sideEffects": [
+    "*.css",
+    "*.scss"
+  ],
   "exports": {
     ".": {
+      "types": "./dist/kaysa.d.ts",
       "sass": "./src/scss/main.scss",
       "style": "./dist/kaysa.min.css",
+      "import": "./dist/kaysa.esm.js",
       "default": "./dist/kaysa.esm.js"
     },
+    "./package.json": "./package.json",
     "./js/*": "./src/js/*",
     "./scss/*": "./src/scss/*"
   },
