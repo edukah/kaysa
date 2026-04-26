@@ -6,6 +6,8 @@
 
 Modular horizontal slider with touch controls, custom scrollbars, and responsive gap settings. Built with pure JavaScript for seamless integration.
 
+> Maintained on best-effort basis. Issues welcome but not guaranteed to be addressed.
+
 ## Features
 
 - **Dual Configuration** (JS + HTML attributes)
