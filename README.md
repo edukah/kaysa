@@ -26,17 +26,20 @@ Modular horizontal slider with touch controls, custom scrollbars, and responsive
 npm install kaysa
 ```
 
-### Script Tag
-
-```html
-<link rel="stylesheet" href="dist/kaysa.min.css">
-<script src="dist/kaysa.min.js"></script>
-```
-
 ### Module Import
 
 ```js
 import Kaysa from 'kaysa';
+```
+
+### Browser (no bundler)
+
+```html
+<link rel="stylesheet" href="https://unpkg.com/kaysa/dist/kaysa.min.css">
+<script type="module">
+  import Kaysa from 'https://unpkg.com/kaysa/dist/kaysa.esm.js';
+  const slider = new Kaysa({ target: '.slider' });
+</script>
 ```
 
 ### Styles

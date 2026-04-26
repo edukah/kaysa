@@ -25,53 +25,26 @@ const distPath = path.join(common.context, 'dist');
 const jsEntry = path.join(common.context, 'src/js/index.js');
 const cssEntry = path.join(common.context, 'src/scss/main.scss');
 
-// UMD build — <script> tag and require()
-const umd = merge(common, {
+export default merge(common, {
   mode: 'production',
   entry: {
-    'kaysa.min.js': jsEntry,
+    'kaysa.esm.js': jsEntry,
     'kaysa.min.junk': cssEntry
   },
   output: {
     path: distPath,
     filename: '[name]',
     chunkFormat: false,
-    library: {
-      name: 'Kaysa',
-      type: 'umd',
-      export: 'default'
-    },
-    globalObject: 'this'
+    library: { type: 'module' },
+    module: true
   },
+  experiments: { outputModule: true },
   plugins: [
     new CleanWebpackPlugin({
-      cleanOnceBeforeBuildPatterns: [],
+      cleanOnceBeforeBuildPatterns: ['**/*.min.js'],
       cleanAfterEveryBuildPatterns: ['**/*.junk'],
       protectWebpackAssets: false
     })
   ],
   optimization: terserOptions
 });
-
-// ESM build — import
-const esm = merge(common, {
-  mode: 'production',
-  entry: {
-    'kaysa.esm.js': jsEntry
-  },
-  output: {
-    path: distPath,
-    filename: '[name]',
-    chunkFormat: false,
-    library: {
-      type: 'module'
-    },
-    module: true
-  },
-  experiments: {
-    outputModule: true
-  },
-  optimization: terserOptions
-});
-
-export default [umd, esm];

@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "Modular horizontal slider with touch controls, custom scrollbars, and responsive gap settings. Built with pure JavaScript for seamless integration.",
   "type": "module",
-  "main": "dist/kaysa.min.js",
+  "main": "dist/kaysa.esm.js",
   "module": "dist/kaysa.esm.js",
   "types": "dist/kaysa.d.ts",
   "files": [
