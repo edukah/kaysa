@@ -34,10 +34,32 @@ import Kaysa from 'kaysa';
 
 ### Browser (no bundler)
 
+**unpkg**
+
 ```html
 <link rel="stylesheet" href="https://unpkg.com/kaysa/dist/kaysa.min.css">
 <script type="module">
   import Kaysa from 'https://unpkg.com/kaysa/dist/kaysa.esm.js';
+  const slider = new Kaysa({ target: '.slider' });
+</script>
+```
+
+**jsDelivr (npm)**
+
+```html
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/kaysa/dist/kaysa.min.css">
+<script type="module">
+  import Kaysa from 'https://cdn.jsdelivr.net/npm/kaysa/dist/kaysa.esm.js';
+  const slider = new Kaysa({ target: '.slider' });
+</script>
+```
+
+**jsDelivr (GitHub — works without npm publish)**
+
+```html
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/edukah/kaysa/dist/kaysa.min.css">
+<script type="module">
+  import Kaysa from 'https://cdn.jsdelivr.net/gh/edukah/kaysa/dist/kaysa.esm.js';
   const slider = new Kaysa({ target: '.slider' });
 </script>
 ```
